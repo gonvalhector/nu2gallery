@@ -2,7 +2,7 @@
 helps display a new image from Google Photos in the site's gallery."""
 
 from pathlib import Path
-
+from classes import Image
 
 def main():
     """Prompt the user for front matter values"""
