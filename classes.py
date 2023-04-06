@@ -37,8 +37,7 @@ class ImageFile:
     - A link to a JPG version of the image                            '''
 class Image(ImageFile):
     # Initializer
-    def __init__(self, label="", caption="", link_full="", /
-                link_gif=None, link_png="", link_jpg=""):
+    def __init__(self, label="", caption="", link_full="", link_gif=None, link_png="", link_jpg=""):
         self.__label = label
         self.__caption = caption
         self.__link_full = link_full
