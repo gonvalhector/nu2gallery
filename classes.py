@@ -114,3 +114,38 @@ class Video:
     def print_details(self):
         print("Type: ", self.get_type())
         print("URL: ", self.get_url())
+
+
+''' An external link object consists of a caption, a url,
+    and an optional embed link'''
+class ExternalLink:
+    # Initializer
+    def __init__(self, caption="", url="", embed=None):
+        self.__caption = caption
+        self.__url = url
+        self.__embed = embed
+
+    # Getters and setters
+    def get_caption(self):
+        return self.__caption
+    
+    def set_caption(self, caption):
+        self.__caption = caption
+
+    def get_url(self):
+        return self.__url
+    
+    def set_url(self, url):
+        self.__url = url
+
+    def get_embed(self):
+        return self.__embed
+    
+    def set_embed(self, embed):
+        self.__embed = embed
+
+    # Print data
+    def print_details(self):
+        print("Caption: ", self.get_caption())
+        print("URL: ", self.get_url())
+        print("Embed link: ", self.get_embed())
