@@ -28,6 +28,12 @@ class ImageFile:
     def set_link_jpg(self, link):
         self.__link_jpg = link
 
+    # Print data
+    def print_details(self):
+        print("GIF link: ", self.get_link_gif())
+        print("PNG link: ", self.get_link_png())
+        print("JPG link: ", self.get_link_jpg())
+
 
 ''' An image object inherits from ImageFile and consists of a label, 
     a caption and several links:
@@ -62,6 +68,12 @@ class Image(ImageFile):
     def set_link_full(self, link):
         self.__link_full = link
 
+    # Print data
+    def print_details(self):
+        print("Label: ", self.get_label())
+        print("Caption: ", self.get_caption())
+        print("Full link: ", self.get_link_full())
+        super().print_details()
 
 ''' A thumbnail object inherits from ImageFile and consists of several links:
     - A link to a GIF version of the thumbnail (for animated thumbs only)
@@ -71,3 +83,7 @@ class Thumbnail(ImageFile):
     # Initializer
     def __init__(self, link_gif=None, link_png="", link_jpg=""):
         super().__init__(link_gif, link_png, link_jpg)
+
+    # Print data
+    def print_details(self):
+        super().print_details()
