@@ -61,3 +61,13 @@ class Image(ImageFile):
     
     def set_link_full(self, link):
         self.__link_full = link
+
+
+''' A thumbnail object inherits from ImageFile and consists of several links:
+    - A link to a GIF version of the thumbnail (for animated thumbs only)
+    - A link to a PNG version of the thumbnail
+    - A link to a JPG version of the thumbnail                                '''
+class Thumbnail(ImageFile):
+    # Initializer
+    def __init__(self, link_gif=None, link_png="", link_jpg=""):
+        super().__init__(link_gif, link_png, link_jpg)
