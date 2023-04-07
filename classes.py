@@ -75,6 +75,7 @@ class Image(ImageFile):
         print("Full link: ", self.get_link_full())
         super().print_details()
 
+
 ''' A thumbnail object inherits from ImageFile and consists of several links:
     - A link to a GIF version of the thumbnail (for animated thumbs only)
     - A link to a PNG version of the thumbnail
@@ -87,3 +88,29 @@ class Thumbnail(ImageFile):
     # Print data
     def print_details(self):
         super().print_details()
+
+
+''' A video object consists of a type and a url.'''
+class Video:
+    # Initializer
+    def __init__(self, type="", url=""):
+        self.__type = type
+        self.__url = url
+
+    # Getters and setters
+    def get_type(self):
+        return self.__type
+    
+    def set_type(self, type):
+        self.__type = type
+
+    def get_url(self):
+        return self.__url
+    
+    def set_url(self, url):
+        self.__url = url
+
+    # Print data
+    def print_details(self):
+        print("Type: ", self.get_type())
+        print("URL: ", self.get_url())
