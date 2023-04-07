@@ -1,6 +1,9 @@
-from classes import Image, Thumbnail
+from classes import Image, Thumbnail, Video
 
 # Testing the proper implementation of an image object and inheritance of the ImageFile class
+print("Images:")
+print()
+
 image1 = Image("Final Version", "Designed with 60fps in mind.", "full-link", "gif-link", "png-link", "jpg-link")
 image1.print_details()
 
@@ -13,6 +16,9 @@ image2.print_details()
 print()
 
 # Testing the proper implementation of a thumbnail object and inheritance of the ImageFile class
+print("Thumbnails:")
+print()
+
 thumb1 = Thumbnail("gif-link", "png-link", "jpg-link")
 thumb1.print_details()
 
@@ -21,3 +27,18 @@ print()
 # Testing a thumbnail object with no arguments passed
 thumb2 = Thumbnail()
 thumb2.print_details()
+
+print()
+
+# Testing the proper implementation of a video object
+print("Videos:")
+print()
+
+video1 = Video("Animation", "video-url")
+video1.print_details()
+
+print()
+
+# Testing a video object with no arguments passed
+video2 = Video()
+video2.print_details()
