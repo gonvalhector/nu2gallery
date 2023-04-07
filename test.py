@@ -1,4 +1,4 @@
-from classes import Image, Thumbnail, Video
+from classes import Image, Thumbnail, Video, ExternalLink
 
 # Testing the proper implementation of an image object and inheritance of the ImageFile class
 print("Images:")
@@ -42,3 +42,20 @@ print()
 # Testing a video object with no arguments passed
 video2 = Video()
 video2.print_details()
+
+print()
+
+# Testing the proper implementation of an external link object
+print("External Links:")
+print()
+
+el1 = ExternalLink("Instagram", "ig", "embed-link")
+el1.print_details()
+
+print()
+
+# Testing an external link object with no arguments passed
+el2 = ExternalLink()
+el2.print_details()
+
+print()
