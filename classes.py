@@ -224,3 +224,23 @@ class ImageFrontMatter:
     
     def set_images(self, images):
         self.__images = images
+
+    # Print data
+    def print_details(self):
+        print("Category: ", self.get_category())
+        print("Short name: ", self.get_short_name())
+        print("Title: ", self.get_title())
+        print("Image: ", self.get_image())
+        print("Alt text: ", self.get_alt())
+        print("External links:")
+        for link in self.get_external_links():
+            link.print_details()
+        print("Videos:")
+        for video in self.get_videos():
+            video.print_details()
+        print("Thumbnails:")
+        for thumbnail in self.get_thumbnails():
+            thumbnail.print_details()
+        print("Images:")
+        for image in self.get_images():
+            image.print_details()
