@@ -149,3 +149,78 @@ class ExternalLink:
         print("Caption: ", self.get_caption())
         print("URL: ", self.get_url())
         print("Embed link: ", self.get_embed())
+
+
+''' An image front matter object consists of a category, a short name,
+    a title, a preview image link, alt text and several lists:
+    - A list of ExternalLink class objects.
+    - A list of Video class objects.
+    - A list of Thumbnail class objects.
+    - A list of Image class objects.                                   '''
+class ImageFrontMatter:
+    # Initializer
+    def __init__(self, category="", short_name="", title="", image="", alt=""):
+        self.__category = category
+        self.__short_name = short_name
+        self.__title = title
+        self.__image = image
+        self.__alt = alt
+        self.__external_links = []
+        self.__videos = []
+        self.__thumbnails = []
+        self.__images = []
+
+    # Getters and setters
+    def get_category(self):
+        return self.__category
+    
+    def set_category(self, category):
+        self.__category = category
+
+    def get_short_name(self):
+        return self.__short_name
+    
+    def set_short_name(self, short_name):
+        self.__short_name = short_name
+
+    def get_title(self):
+        return self.__title
+    
+    def set_title(self, title):
+        self.__title = title
+
+    def get_image(self):
+        return self.__image
+    
+    def set_image(self, image):
+        self.__image = image
+
+    def get_alt(self):
+        return self.__alt
+    
+    def set_alt(self, alt):
+        self.__alt = alt
+
+    def get_external_links(self):
+        return self.__external_links
+    
+    def set_external_links(self, external_links):
+        self.__external_links = external_links
+
+    def get_videos(self):
+        return self.__videos
+    
+    def set_videos(self, videos):
+        self.__videos = videos
+
+    def get_thumbnails(self):
+        return self.__thumbnails
+    
+    def set_thumbnails(self, thumbnails):
+        self.__thumbnails = thumbnails
+
+    def get_images(self):
+        return self.__images
+    
+    def set_images(self, images):
+        self.__images = images
