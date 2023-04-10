@@ -1,4 +1,4 @@
-from classes import Image, Thumbnail, Video, ExternalLink
+from classes import Image, Thumbnail, Video, ExternalLink, ImageFrontMatter
 
 
 def main():
@@ -19,6 +19,9 @@ def main():
     ExternalLinkTests()
     print()
 
+    # Test ImageFrontMatter class
+    ImageFrontMatterTests()
+    print()
 
 # Tests for Image class objects
 def ImageTests():
@@ -83,6 +86,20 @@ def ExternalLinkTests():
     el2 = ExternalLink()
     el2.print_details()
 
+# Tests for ImageFrontMatter class objects
+def ImageFrontMatterTests():
+    print("Image Front Matter:")
+    print()
+
+    # Testing the proper implementation of an image front matter object
+    ifm1 = ImageFrontMatter("categories", "short-name", "title", "image", "alt")
+    ifm1.print_details()
+
+    print()
+
+    # Testing an image front matter object with no arguments passed
+    ifm2 = ImageFrontMatter()
+    ifm2.print_details()
 
 if __name__ == "__main__":
     main()
