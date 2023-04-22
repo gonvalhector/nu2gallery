@@ -171,7 +171,7 @@ def main():
             for k, v in image_scr_w.items():
                 for l in range(len(image_bases)):
                     front_matter += f"      {k}_{extensions[l]}: " + image_bases[l] + v + "\n"
-                    
+
     front_matter += "---"
 
     # Prompt user for confirmation to write file
@@ -214,6 +214,38 @@ def promt_category():
         else:
             print("Invalid input.")
             continue
+
+
+def prompt_short_name():
+    pass
+
+
+def prompt_title():
+    pass
+
+
+def prompt_alt():
+    pass
+
+
+def prompt_external_link():
+    pass
+
+
+def prompt_thumbnail():
+    pass
+
+
+def prompt_video():
+    pass
+
+
+def prompt_image():
+    pass
+
+
+def write_file():
+    pass
 
 
 if __name__ == "__main__":
