@@ -6,31 +6,34 @@ def main():
         helps display a new image from Google Photos in the site's gallery. """
     
     print("Welcome to Nu2Gallery.")
-    # Define front matter values
-    front_matter = "---\n"
-    while True:
-        category = input(f"What is the image CATEGORY? [A (Art Gallery)/B (Blog Pictures)]\n")
-        if category == "A" or category == "a":
-            front_matter += "category: " + "art_gallery" + "\n"
-            break
-        elif category == "B" or category == "b":
-            front_matter += "category: " + "blog_pictures" + "\n"
-            break
-        else:
-            print("Invalid input.")
-            continue
+    
+    # Create ImageFrontMatter object
+    front_matter = ImageFrontMatter()
+    
+    # Prompt user for new image category
+    category = promt_category()
+    front_matter.set_category(category)
+
+    # Short name
     short_name = input("What is the short_name of the new image?\n")
     front_matter += "short_name: " + short_name + "\n"
+
+    # Date and filename
     date_args = ["YEAR", "MONTH", "DAY"]
     date_values = []
     for arg in date_args:
         date_value = input(f"What {arg} was '{short_name}' posted?\n")
         date_values.append(date_value)
     filename = date_values[0] + "-" + date_values[1] + "-" + date_values[2] + "-" + short_name + ".md"
+
+    # Title
     title = input(f"What is the title of '{short_name}'?\n")
     front_matter += "title: " + title + "\n"
+
+    # Alt text
     alt = input(f"What is the alternate text of '{short_name}'?\n")
     front_matter += "alt: " + alt + "\n"
+
     # Prompt user for yotube video link
     while True:
         is_video = input(f"Is there a Youtube video for '{short_name}'? [Y/N]\n")
@@ -54,6 +57,7 @@ def main():
         else:
             print("Invalid input.")
             continue
+
     # Prompt user for palette
     while True:
         is_palette = input(f"Is there a Palette to share for '{short_name}'? [Y/N]\n")
@@ -75,11 +79,13 @@ def main():
         else:
             print("Invalid input.")
             continue
+
     # Add thumbnail links
     print("Let's add the thumbnails.")
     front_matter += "thumbs:\n"
     extensions = []
     thumb_bases = []
+
     # If there is an animated image and thumbnail
     while True:
         isanimated = input(f"Is there an animated image? [Y/N]\n")
@@ -105,6 +111,7 @@ def main():
     thumb_JPG = full_thumb_JPG.split("=")
     thumb_bases.append(thumb_JPG[0])
     extensions.append("JPG")
+
     # Image widths in relation to screen widths
     thumb_scr_w = {"w1920": "=w355", "w1024": "=w284", "w768": "=w213", "w600": "=w166", "w411": "=w114", "w360": "=w100", "w240": "=w66"}
     for k, v in thumb_scr_w.items():
@@ -112,6 +119,7 @@ def main():
             front_matter += f"    {k}_{extensions[i]}: " + thumb_bases[i] + v + "\n"
 
     print("Let's add the images.")
+
     # Prompt the user for a number of images
     while True:
         # Convert input string to integer
@@ -122,6 +130,7 @@ def main():
             continue
         else:
             break
+
     # List of images and their values
     if n > 0:
         front_matter += "images:\n"
@@ -162,6 +171,7 @@ def main():
             for k, v in image_scr_w.items():
                 for l in range(len(image_bases)):
                     front_matter += f"      {k}_{extensions[l]}: " + image_bases[l] + v + "\n"
+                    
     front_matter += "---"
 
     # Prompt user for confirmation to write file
@@ -183,6 +193,28 @@ def main():
         else:
             print("Invalid input.")
             continue
+
+
+def promt_category():
+    ''' Prompt the user for the image category and returns it in a string. '''
+
+    # All categories
+    categories = {"A": "pixel_art", "B": "watercolor_art",
+                  "C": "digital_art", "D": "sketches",
+                  "E": "blog_pictures"}
+
+    # Keep prompting user for valid input
+    while True:
+        prompt = "What is the image CATEGORY? [A (Pixel Art)/ B (Watercolor Art)/ C (Digital Art)/ D (Sketches)/ E (Blog Pictures)]\n"
+        category = input(prompt).upper()
+
+        # Check input is valid
+        if category in categories:
+            return categories[category]
+        else:
+            print("Invalid input.")
+            continue
+
 
 if __name__ == "__main__":
     main()
