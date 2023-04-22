@@ -1,8 +1,9 @@
-''' An image file consists of several links:
-    - A link to a GIF version of the image (for animated images only)
-    - A link to a PNG version of the image
-    - A link to a JPG version of the image                            '''
 class ImageFile:
+    ''' An image file consists of several links:
+        - A link to a GIF version of the image (for animated images only)
+        - A link to a PNG version of the image
+        - A link to a JPG version of the image                            '''
+
     # Initializer
     def __init__(self, link_gif=None, link_png="", link_jpg=""):
         self.__link_gif = link_gif
@@ -35,13 +36,14 @@ class ImageFile:
         print("JPG link: ", self.get_link_jpg())
 
 
-''' An image object inherits from ImageFile and consists of a label, 
-    a caption and several links:
-    - A link to a full resolution version of the image
-    - A link to a GIF version of the image (for animated images only)
-    - A link to a PNG version of the image
-    - A link to a JPG version of the image                            '''
 class Image(ImageFile):
+    ''' An image object inherits from ImageFile and consists of a label, 
+        a caption and several links:
+        - A link to a full resolution version of the image
+        - A link to a GIF version of the image (for animated images only)
+        - A link to a PNG version of the image
+        - A link to a JPG version of the image                            '''
+
     # Initializer
     def __init__(self, label="", caption="", link_full="", link_gif=None, link_png="", link_jpg=""):
         self.__label = label
@@ -76,11 +78,12 @@ class Image(ImageFile):
         super().print_details()
 
 
-''' A thumbnail object inherits from ImageFile and consists of several links:
-    - A link to a GIF version of the thumbnail (for animated thumbs only)
-    - A link to a PNG version of the thumbnail
-    - A link to a JPG version of the thumbnail                                '''
 class Thumbnail(ImageFile):
+    ''' A thumbnail object inherits from ImageFile and consists of several links:
+        - A link to a GIF version of the thumbnail (for animated thumbs only)
+        - A link to a PNG version of the thumbnail
+        - A link to a JPG version of the thumbnail                                '''
+
     # Initializer
     def __init__(self, link_gif=None, link_png="", link_jpg=""):
         super().__init__(link_gif, link_png, link_jpg)
@@ -90,8 +93,9 @@ class Thumbnail(ImageFile):
         super().print_details()
 
 
-''' A video object consists of a type and a url.'''
 class Video:
+    ''' A video object consists of a type and a url. '''
+
     # Initializer
     def __init__(self, type="", url=""):
         self.__type = type
@@ -116,9 +120,10 @@ class Video:
         print("URL: ", self.get_url())
 
 
-''' An external link object consists of a caption, a url,
-    and an optional embed link'''
 class ExternalLink:
+    ''' An external link object consists of a caption, a url,
+        and an optional embed link.                           '''
+
     # Initializer
     def __init__(self, caption="", url="", embed=None):
         self.__caption = caption
@@ -151,13 +156,14 @@ class ExternalLink:
         print("Embed link: ", self.get_embed())
 
 
-''' An image front matter object consists of a category, a short name,
-    a title, a preview image link, alt text and several lists:
-    - A list of ExternalLink class objects.
-    - A list of Video class objects.
-    - A list of Thumbnail class objects.
-    - A list of Image class objects.                                   '''
 class ImageFrontMatter:
+    ''' An image front matter object consists of a category, a short name,
+        a title, a preview image link, alt text and several lists:
+        - A list of ExternalLink class objects.
+        - A list of Video class objects.
+        - A list of Thumbnail class objects.
+        - A list of Image class objects.                                   '''
+
     # Initializer
     def __init__(self, category="", short_name="", title="", image="", alt=""):
         self.__category = category

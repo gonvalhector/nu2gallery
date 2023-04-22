@@ -1,11 +1,10 @@
-"""Creates a new MD file with front matter that
-helps display a new image from Google Photos in the site's gallery."""
-
 from pathlib import Path
-from classes import Image
+from classes import Image, Thumbnail, Video, ExternalLink, ImageFrontMatter
 
 def main():
-    """Prompt the user for front matter values"""
+    """ Creates a new MD file with front matter that
+        helps display a new image from Google Photos in the site's gallery. """
+    
     print("Welcome to Nu2Gallery.")
     # Define front matter values
     front_matter = "---\n"

@@ -2,6 +2,8 @@ from classes import Image, Thumbnail, Video, ExternalLink, ImageFrontMatter
 
 
 def main():
+    '''Calls all test functions. '''
+
     # Test Image class
     ImageTests()
     print()
@@ -23,8 +25,10 @@ def main():
     ImageFrontMatterTests()
     print()
 
-# Tests for Image class objects
+
 def ImageTests():
+    ''' Tests for Image class objects. '''
+
     print("Images:")
     print()
 
@@ -39,8 +43,9 @@ def ImageTests():
     image2.print_details()
 
 
-# Tests for Thumbnail class objects
 def ThumbnailTests():
+    ''' Tests for Thumbnail class objects. '''
+
     print("Thumbnails:")
     print()
 
@@ -55,8 +60,9 @@ def ThumbnailTests():
     thumb2.print_details()
 
 
-# Tests for Video class objects
 def VideoTests():
+    ''' Tests for Video class objects. '''
+
     print("Videos:")
     print()
 
@@ -71,8 +77,9 @@ def VideoTests():
     video2.print_details()
 
 
-# Tests for ExternalLink class objects
 def ExternalLinkTests():
+    ''' Tests for ExternalLink class objects. '''
+
     print("External Links:")
     print()
 
@@ -86,8 +93,10 @@ def ExternalLinkTests():
     el2 = ExternalLink()
     el2.print_details()
 
-# Tests for ImageFrontMatter class objects
+
 def ImageFrontMatterTests():
+    ''' Tests for ImageFrontMatter class objects. '''
+
     print("Image Front Matter:")
     print()
 
