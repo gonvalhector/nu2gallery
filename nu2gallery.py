@@ -30,6 +30,42 @@ def main():
     preview = prompt_preview(short_name)
     front_matter.set_preview(preview)
 
+    # Prompt user for external links
+    # Keep prompting user for valid Yes or No input
+    while True:
+        has_external_links_prompt = "Are there any EXTERNAL LINKS [Y (Yes) / N (No)]?\n"
+        has_external_links = input(has_external_links_prompt).upper()
+
+        # Check input is valid
+        if has_external_links == "Y":
+            # Keep prompting user for valid number of external links
+            while True:
+                try:
+                    n_prompt = f"How many EXTERNAL LINKS are there in {short_name}?\n"
+                    n = int(input(n_prompt))
+
+                    # Check input is valid
+                    if n > 0:
+                        # Create empty ExternalLink objects list
+                        external_links = []
+                        # Generate n number of ExternalLink objects
+                        for i in range(n):
+                            external_link = prompt_external_link()
+                            external_links.append(external_link)
+                        # Add external links to front matter
+                        front_matter.set_external_links(external_links)
+                    else:
+                        print("Invalid input.")
+                        continue
+                except:
+                    print("Invalid input.")
+                    continue
+        elif has_external_links == "N":
+            break
+        else:
+            print("Invalid input.")
+            continue
+
     # Prompt user for yotube video link
     while True:
         is_video = input(f"Is there a Youtube video for '{short_name}'? [Y/N]\n")
@@ -209,7 +245,7 @@ def prompt_category():
 
     # Keep prompting user for valid input
     while True:
-        prompt = "What is the image CATEGORY? [A (Pixel Art)/ B (Watercolor Art)/ C (Digital Art)/ D (Sketches)/ E (Blog Pictures)]\n"
+        prompt = "What is the new image's CATEGORY? [A (Pixel Art)/ B (Watercolor Art)/ C (Digital Art)/ D (Sketches)/ E (Blog Pictures)]\n"
         category = input(prompt).upper()
 
         # Check input is valid
@@ -225,7 +261,7 @@ def prompt_short_name():
 
     # Keep prompting user for valid input
     while True:
-        prompt = "What is the short_name of the new image?\n"
+        prompt = "What is the new image's SHORT NAME?\n"
         short_name = input(prompt)
 
         # Check input is valid
@@ -242,7 +278,7 @@ def prompt_title(short_name):
 
     # Keep prompting user for valid input
     while True:
-        prompt = f"What is the title of '{short_name}'?\n"
+        prompt = f"What is the TITLE of '{short_name}'?\n"
         title = input(prompt)
 
         # Check input is valid
@@ -259,7 +295,7 @@ def prompt_alt(short_name):
 
     # Keep prompting user for valid input
     while True:
-        prompt = f"What is the alternate text of '{short_name}'?\n"
+        prompt = f"What is the ALTERNATE TEXT of '{short_name}'?\n"
         alt_text = input(prompt)
 
         # Check input is valid
@@ -276,7 +312,7 @@ def prompt_preview(short_name):
 
     # Keep prompting user for valid input
     while True:
-        prompt = f"What is the preview image of '{short_name}'?\n"
+        prompt = f"What is the PREVIEW IMAGE of '{short_name}'?\n"
         preview = input(prompt)
 
         # Check input is valid
@@ -288,7 +324,64 @@ def prompt_preview(short_name):
 
 
 def prompt_external_link():
-    pass
+    ''' Prompt the user for the image's external link and returns it as an ExternalLink object.
+        It takes a short_name argument for its prompt.                                          '''
+    
+    # Create ExternalLink object
+    external_link = ExternalLink()
+
+    # Keep prompting user for valid caption
+    while True:
+        caption_prompt = "What is the external link's CAPTION?\n"
+        caption = input(caption_prompt)
+
+        # Check input is valid
+        if len(caption) > 0:
+            external_link.set_caption(caption)
+            break
+        else:
+            print("Invalid input.")
+            continue
+
+    # Keep prompting user for valid URL
+    while True:
+        url_prompt = "What is the external link's URL?\n"
+        url = input(url_prompt)
+
+        # Check input is valid
+        if len(url) > 0:
+            external_link.set_url(url)
+            break
+        else:
+            print("Invalid input.")
+            continue
+
+    # Keep prompting user for valid Yes or No input
+    while True:
+        has_embed_prompt = "Is there an external object to EMBED [Y (Yes) / N (No)]?\n"
+        has_embed = input(has_embed_prompt).upper()
+
+        # Check input is valid
+        if has_embed == "Y":
+            # Keep prompting user for valid embed object link
+            while True:
+                embed_prompt = "What is the link to the EMBED object?\n"
+                embed = input(embed_prompt)
+
+                # Check input is valid
+                if len(embed) > 0:
+                    external_link.set_embed(embed)
+                    break
+                else:
+                    print("Invalid input.")
+                    continue
+            break
+        elif has_embed == "N":
+            return external_link
+        else:
+            print("Invalid input.")
+            continue
+    return external_link
 
 
 def prompt_thumbnail():
