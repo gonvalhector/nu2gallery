@@ -31,40 +31,8 @@ def main():
     front_matter.set_preview(preview)
 
     # Prompt user for external links
-    # Keep prompting user for valid Yes or No input
-    while True:
-        has_external_links_prompt = "Are there any EXTERNAL LINKS [Y (Yes) / N (No)]?\n"
-        has_external_links = input(has_external_links_prompt).upper()
-
-        # Check input is valid
-        if has_external_links == "Y":
-            # Keep prompting user for valid number of external links
-            while True:
-                try:
-                    n_prompt = f"How many EXTERNAL LINKS are there in {short_name}?\n"
-                    n = int(input(n_prompt))
-
-                    # Check input is valid
-                    if n > 0:
-                        # Create empty ExternalLink objects list
-                        external_links = []
-                        # Generate n number of ExternalLink objects
-                        for i in range(n):
-                            external_link = prompt_external_link()
-                            external_links.append(external_link)
-                        # Add external links to front matter
-                        front_matter.set_external_links(external_links)
-                    else:
-                        print("Invalid input.")
-                        continue
-                except:
-                    print("Invalid input.")
-                    continue
-        elif has_external_links == "N":
-            break
-        else:
-            print("Invalid input.")
-            continue
+    external_links = prompt_external_links(short_name)
+    front_matter.set_external_links(external_links)
 
     # Prompt user for yotube video link
     while True:
@@ -323,16 +291,16 @@ def prompt_preview(short_name):
             continue
 
 
-def prompt_external_link():
+def prompt_external_link(n):
     ''' Prompt the user for the image's external link and returns it as an ExternalLink object.
-        It takes a short_name argument for its prompt.                                          '''
+        It takes a number as an argument for clarity.                                           '''
     
     # Create ExternalLink object
     external_link = ExternalLink()
 
     # Keep prompting user for valid caption
     while True:
-        caption_prompt = "What is the external link's CAPTION?\n"
+        caption_prompt = f"What is external link #{n + 1}'s  CAPTION?\n"
         caption = input(caption_prompt)
 
         # Check input is valid
@@ -345,7 +313,7 @@ def prompt_external_link():
 
     # Keep prompting user for valid URL
     while True:
-        url_prompt = "What is the external link's URL?\n"
+        url_prompt = f"What is external link #{n + 1}'s URL?\n"
         url = input(url_prompt)
 
         # Check input is valid
@@ -382,6 +350,51 @@ def prompt_external_link():
             print("Invalid input.")
             continue
     return external_link
+
+
+def prompt_external_links(short_name):
+    ''' Prompts the user for the image's number of external links and returns
+        them as a list of ExternalLink objects.
+        It takes a short_name argument for its prompt.                                          '''
+    
+    # Create empty ExternalLink objects list
+    external_links = []
+
+    # Keep prompting user for valid Yes or No input
+    while True:
+        has_external_links_prompt = "Are there any EXTERNAL LINKS [Y (Yes) / N (No)]?\n"
+        has_external_links = input(has_external_links_prompt).upper()
+
+        # Check input is valid
+        if has_external_links == "Y":
+            # Keep prompting user for valid number of external links
+            while True:
+                try:
+                    n_prompt = f"How many EXTERNAL LINKS are there in {short_name}?\n"
+                    n = int(input(n_prompt))
+
+                    # Check input is valid
+                    if n > 0:
+                        # Generate n number of ExternalLink objects
+                        for i in range(n):
+                            external_link = prompt_external_link(i)
+                            external_links.append(external_link) 
+                        break    
+                    else:
+                        print("Invalid input.")
+                        continue
+                except:
+                    print("Invalid input.")
+                    continue
+            break
+        elif has_external_links == "N":
+            break
+        else:
+            print("Invalid input.")
+            continue
+    
+    # Return ExternalLink objects list
+    return external_links
 
 
 def prompt_thumbnail():
