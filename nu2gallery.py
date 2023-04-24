@@ -22,12 +22,13 @@ def main():
     title = prompt_title(short_name)
     front_matter.set_title(title)
 
-    # Alt text
+    # Prompt user for new image's alt text
     alt_text = prompt_alt(short_name)
     front_matter.set_alt(alt_text)
 
-    # Preview image
-    
+    # Prompt user for new image's preview image
+    preview = prompt_preview(short_name)
+    front_matter.set_preview(preview)
 
     # Prompt user for yotube video link
     while True:
@@ -269,8 +270,21 @@ def prompt_alt(short_name):
             continue
 
 
-def prompt_preview():
-    pass
+def prompt_preview(short_name):
+    ''' Prompt the user for the image's preview image link and returns it in a string.
+        It takes a short_name argument for its prompt.                                 '''
+
+    # Keep prompting user for valid input
+    while True:
+        prompt = f"What is the preview image of '{short_name}'?\n"
+        preview = input(prompt)
+
+        # Check input is valid
+        if len(preview) > 0:
+            return preview
+        else:
+            print("Invalid input.")
+            continue
 
 
 def prompt_external_link():
