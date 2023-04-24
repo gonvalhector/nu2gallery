@@ -11,25 +11,16 @@ def main():
     front_matter = ImageFrontMatter()
     
     # Prompt user for new image's category
-    category = promt_category()
+    category = prompt_category()
     front_matter.set_category(category)
 
     # Prompt user for new image's short name
     short_name = prompt_short_name()
     front_matter.set_short_name(short_name)
 
-
-    # Date and filename
-    date_args = ["YEAR", "MONTH", "DAY"]
-    date_values = []
-    for arg in date_args:
-        date_value = input(f"What {arg} was '{short_name}' posted?\n")
-        date_values.append(date_value)
-    filename = date_values[0] + "-" + date_values[1] + "-" + date_values[2] + "-" + short_name + ".md"
-
-    # Title
-    title = input(f"What is the title of '{short_name}'?\n")
-    front_matter += "title: " + title + "\n"
+    # Prompt user for new image's title
+    title = prompt_title(short_name)
+    front_matter.set_title(title)
 
     # Alt text
     alt = input(f"What is the alternate text of '{short_name}'?\n")
@@ -175,6 +166,14 @@ def main():
 
     front_matter += "---"
 
+    # Date and filename
+    date_args = ["YEAR", "MONTH", "DAY"]
+    date_values = []
+    for arg in date_args:
+        date_value = input(f"What {arg} was '{short_name}' posted?\n")
+        date_values.append(date_value)
+    filename = date_values[0] + "-" + date_values[1] + "-" + date_values[2] + "-" + short_name + ".md" 
+
     # Prompt user for confirmation to write file
     print(front_matter)
     while True:
@@ -196,7 +195,7 @@ def main():
             continue
 
 
-def promt_category():
+def prompt_category():
     ''' Prompt the user for the image's category and returns it in a string. '''
 
     # All categories
@@ -233,8 +232,21 @@ def prompt_short_name():
             continue
 
 
-def prompt_title():
-    pass
+def prompt_title(short_name):
+    ''' Prompt the user for the image's title and returns it in a string.
+        It takes a short_name argument for its prompt.                    '''
+
+    # Keep prompting user for valid input
+    while True:
+        prompt = f"What is the title of '{short_name}'?\n"
+        title = input(prompt)
+
+        # Check input is valid
+        if len(title) > 0:
+            return title
+        else:
+            print("Invalid input.")
+            continue
 
 
 def prompt_alt():
