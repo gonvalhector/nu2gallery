@@ -10,13 +10,14 @@ def main():
     # Create ImageFrontMatter object
     front_matter = ImageFrontMatter()
     
-    # Prompt user for new image category
+    # Prompt user for new image's category
     category = promt_category()
     front_matter.set_category(category)
 
-    # Short name
-    short_name = input("What is the short_name of the new image?\n")
-    front_matter += "short_name: " + short_name + "\n"
+    # Prompt user for new image's short name
+    short_name = prompt_short_name()
+    front_matter.set_short_name(short_name)
+
 
     # Date and filename
     date_args = ["YEAR", "MONTH", "DAY"]
@@ -196,7 +197,7 @@ def main():
 
 
 def promt_category():
-    ''' Prompt the user for the image category and returns it in a string. '''
+    ''' Prompt the user for the image's category and returns it in a string. '''
 
     # All categories
     categories = {"A": "pixel_art", "B": "watercolor_art",
@@ -217,7 +218,19 @@ def promt_category():
 
 
 def prompt_short_name():
-    pass
+    ''' Prompt the user for the image's short name and returns it in a string.'''
+
+    # Keep prompting user for valid input
+    while True:
+        prompt = "What is the short_name of the new image?\n"
+        short_name = input(prompt)
+
+        # Check input is valid
+        if len(short_name) > 0:
+            return short_name
+        else:
+            print("Invalid input.")
+            continue
 
 
 def prompt_title():
