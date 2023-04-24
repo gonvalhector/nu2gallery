@@ -23,8 +23,11 @@ def main():
     front_matter.set_title(title)
 
     # Alt text
-    alt = input(f"What is the alternate text of '{short_name}'?\n")
-    front_matter += "alt: " + alt + "\n"
+    alt_text = prompt_alt(short_name)
+    front_matter.set_alt(alt_text)
+
+    # Preview image
+    
 
     # Prompt user for yotube video link
     while True:
@@ -249,7 +252,24 @@ def prompt_title(short_name):
             continue
 
 
-def prompt_alt():
+def prompt_alt(short_name):
+    ''' Prompt the user for the image's alt text and returns it in a string.
+        It takes a short_name argument for its prompt.                       '''
+
+    # Keep prompting user for valid input
+    while True:
+        prompt = f"What is the alternate text of '{short_name}'?\n"
+        alt_text = input(prompt)
+
+        # Check input is valid
+        if len(alt_text) > 0:
+            return alt_text
+        else:
+            print("Invalid input.")
+            continue
+
+
+def prompt_preview():
     pass
 
 
