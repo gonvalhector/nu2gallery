@@ -165,11 +165,11 @@ class ImageFrontMatter:
         - A list of Image class objects.                                   '''
 
     # Initializer
-    def __init__(self, category="", short_name="", title="", image="", alt=""):
+    def __init__(self, category="", short_name="", title="", preview="", alt=""):
         self.__category = category
         self.__short_name = short_name
         self.__title = title
-        self.__image = image
+        self.__preview = preview
         self.__alt = alt
         self.__external_links = []
         self.__videos = []
@@ -195,11 +195,11 @@ class ImageFrontMatter:
     def set_title(self, title):
         self.__title = title
 
-    def get_image(self):
-        return self.__image
+    def get_preview(self):
+        return self.__preview
     
-    def set_image(self, image):
-        self.__image = image
+    def set_preview(self, preview):
+        self.__preview = preview
 
     def get_alt(self):
         return self.__alt
@@ -236,7 +236,7 @@ class ImageFrontMatter:
         print("Category: ", self.get_category())
         print("Short name: ", self.get_short_name())
         print("Title: ", self.get_title())
-        print("Image: ", self.get_image())
+        print("Image: ", self.get_preview())
         print("Alt text: ", self.get_alt())
         print("External links:")
         for link in self.get_external_links():
