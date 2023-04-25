@@ -34,29 +34,9 @@ def main():
     external_links = prompt_external_links(short_name)
     front_matter.set_external_links(external_links)
 
-    # Prompt user for yotube video link
-    while True:
-        is_video = input(f"Is there a Youtube video for '{short_name}'? [Y/N]\n")
-        if is_video == "Y" or is_video == "y":
-            front_matter += "video:\n"
-            video_n = int(input(f"How many videos are there for '{short_name}'?\n"))
-            for i in range(video_n):
-                video_type = input(f"What is the type of video for video #{i + 1}?\n")
-                print(f"Let's add a link for video #{i + 1}'s Youtube video.")
-                # Promp the user for the original link
-                og_link = input(f"Enter the shareable link you copied:\n")
-                separated_link = og_link.split("https://youtu.be/")
-                video = "https://www.youtube.com/embed/" + separated_link[1] + "?rel=0"
-                front_matter += "   - type: " + video_type + "\n"
-                front_matter += "     url: " + video + "\n"
-                break
-            break
-        elif is_video == "N" or is_video == "n":
-            print(f"Let's continue with other values for the front matter of '{short_name}'.")
-            break
-        else:
-            print("Invalid input.")
-            continue
+    # Prompt user for videos
+    videos = prompt_videos(short_name)
+    front_matter.set_videos(videos)
 
     # Prompt user for palette
     while True:
@@ -291,16 +271,16 @@ def prompt_preview(short_name):
             continue
 
 
-def prompt_external_link(n):
+def prompt_external_link(i):
     ''' Prompt the user for the image's external link and returns it as an ExternalLink object.
-        It takes a number as an argument for clarity.                                           '''
+        It takes an iterator as an argument to keep track of the current external link.         '''
     
     # Create ExternalLink object
     external_link = ExternalLink()
 
     # Keep prompting user for valid caption
     while True:
-        caption_prompt = f"What is external link #{n + 1}'s  CAPTION?\n"
+        caption_prompt = f"What is external link #{i + 1}'s  CAPTION?\n"
         caption = input(caption_prompt)
 
         # Check input is valid
@@ -313,7 +293,7 @@ def prompt_external_link(n):
 
     # Keep prompting user for valid URL
     while True:
-        url_prompt = f"What is external link #{n + 1}'s URL?\n"
+        url_prompt = f"What is external link #{i + 1}'s URL?\n"
         url = input(url_prompt)
 
         # Check input is valid
@@ -370,7 +350,7 @@ def prompt_external_links(short_name):
             # Keep prompting user for valid number of external links
             while True:
                 try:
-                    n_prompt = f"How many EXTERNAL LINKS are there in {short_name}?\n"
+                    n_prompt = f"How many EXTERNAL LINKS are there in '{short_name}'?\n"
                     n = int(input(n_prompt))
 
                     # Check input is valid
@@ -388,6 +368,7 @@ def prompt_external_links(short_name):
                     continue
             break
         elif has_external_links == "N":
+            print(f"Let's continue with other values for the front matter of '{short_name}'.")
             break
         else:
             print("Invalid input.")
@@ -397,11 +378,90 @@ def prompt_external_links(short_name):
     return external_links
 
 
+def prompt_video(i):
+    ''' Prompt the user for the image's video and returns it as a Video object.
+        It takes an iterator as an argument to keep track of the current video. '''
+    
+    # Create Video object
+    video = Video()
+
+    # Keep prompting user for valid type
+    while True:
+        type_prompt = f"What TYPE of video is video #{i + 1}?\n"
+        type = input(type_prompt)
+
+        # Check input is valid
+        if len(type) > 0:
+            video.set_type(type)
+            print(f"Let's add a URL for video #{i + 1}.")
+            break
+        else:
+            print("Invalid input.")
+            continue
+
+    # Keep prompting user for valid URL
+    while True:
+        url_prompt = "Enter the shareable link you copied:\n"
+        shareable_url = input(url_prompt)
+
+        # Check input is valid
+        if len(shareable_url) > 0:
+            # Transform shareable YT link to embed link
+            split_url = shareable_url.split("https://youtu.be/")[1]
+            url = "https://www.youtube.com/embed/" + split_url + "?rel=0"
+            video.set_url(url)
+            break
+        else:
+            print("Invalid input.")
+            continue
+    return Video
+
+
+def prompt_videos(short_name):
+    ''' Prompts the user for the image's number of videos and returns
+        them as a list of Video objects.
+        It takes a short_name argument for its prompt.                                          '''
+
+    # Create empty Video objects list
+    videos = []
+
+    # Keep prompting user for valid Yes or No input
+    while True:
+        has_videos_prompt = f"Are there any Youtube VIDEOS for '{short_name}'? [Y (Yes) / N (No)]\n"
+        has_videos = input(has_videos_prompt).upper()
+        if has_videos == "Y":
+            # Keep prompting user for valid number of videos
+            while True:
+                try:
+                    n_prompt = f"How many VIDEOS are there for '{short_name}'?\n"
+                    n = int(input(n_prompt))
+
+                    # Check input is valid
+                    if n > 0:
+                        # Generate n number of Video objects     
+                        for i in range(n):
+                            video = prompt_video(i)
+                            videos.append(video)
+                        break
+                    else:
+                        print("Invalid input.")
+                        continue
+                except:
+                    print("Invalid input.")
+                    continue
+            break
+        elif has_videos == "N":
+            print(f"Let's continue with other values for the front matter of '{short_name}'.")
+            break
+        else:
+            print("Invalid input.")
+            continue
+    
+    # Return Video objects list
+    return videos
+
+
 def prompt_thumbnail():
-    pass
-
-
-def prompt_video():
     pass
 
 
