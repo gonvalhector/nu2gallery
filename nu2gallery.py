@@ -38,27 +38,6 @@ def main():
     videos = prompt_videos(short_name)
     front_matter.set_videos(videos)
 
-    # Prompt user for palette
-    while True:
-        is_palette = input(f"Is there a Palette to share for '{short_name}'? [Y/N]\n")
-        if is_palette == "Y" or is_palette == "y":
-            palette_name = input("What is the palette's name?")
-            front_matter += "palette: " + palette_name + "\n"
-            mirror_n = input(f"How many mirrors for the download link are there for '{palette_name}'?\n")
-            for i in range(mirror_n):
-                caption = input(f"What is the caption for mirror #{i + 1}?\n")
-                print(f"Let's add a link for mirror #{i + 1}.")
-                # Promp the user for the original link
-                url = input(f"Enter the full link:\n")
-                front_matter += "   - caption: " + caption + "\n"
-                front_matter += "     url: " + url + "\n"
-                break
-        elif is_palette == "N" or is_palette == "n":
-            print(f"Let's continue with other values for the front matter of '{short_name}'.")
-            break
-        else:
-            print("Invalid input.")
-            continue
 
     # Add thumbnail links
     print("Let's add the thumbnails.")
@@ -91,6 +70,8 @@ def main():
     thumb_JPG = full_thumb_JPG.split("=")
     thumb_bases.append(thumb_JPG[0])
     extensions.append("JPG")
+
+    
 
     # Image widths in relation to screen widths
     thumb_scr_w = {"w1920": "=w355", "w1024": "=w284", "w768": "=w213", "w600": "=w166", "w411": "=w114", "w360": "=w100", "w240": "=w66"}
@@ -151,6 +132,28 @@ def main():
             for k, v in image_scr_w.items():
                 for l in range(len(image_bases)):
                     front_matter += f"      {k}_{extensions[l]}: " + image_bases[l] + v + "\n"
+
+    # Prompt user for palette
+    while True:
+        is_palette = input(f"Is there a Palette to share for '{short_name}'? [Y/N]\n")
+        if is_palette == "Y" or is_palette == "y":
+            palette_name = input("What is the palette's name?")
+            front_matter += "palette: " + palette_name + "\n"
+            mirror_n = input(f"How many mirrors for the download link are there for '{palette_name}'?\n")
+            for i in range(mirror_n):
+                caption = input(f"What is the caption for mirror #{i + 1}?\n")
+                print(f"Let's add a link for mirror #{i + 1}.")
+                # Promp the user for the original link
+                url = input(f"Enter the full link:\n")
+                front_matter += "   - caption: " + caption + "\n"
+                front_matter += "     url: " + url + "\n"
+                break
+        elif is_palette == "N" or is_palette == "n":
+            print(f"Let's continue with other values for the front matter of '{short_name}'.")
+            break
+        else:
+            print("Invalid input.")
+            continue
 
     front_matter += "---"
 
