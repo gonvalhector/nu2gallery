@@ -165,11 +165,10 @@ class ExternalLink:
 
 class ImageFrontMatter:
     ''' An image front matter object consists of a category, a short name,
-        a title, a preview image link, alt text and several lists:
+        a title, a preview image link, alt text, a Thumbnail class object and several lists:
         - A list of ExternalLink class objects.
         - A list of Video class objects.
-        - A list of Thumbnail class objects.
-        - A list of Image class objects.                                   '''
+        - A list of Image class objects.                                                     '''
 
     # Initializer
     def __init__(self, category="", short_name="", title="", preview="", alt=""):
@@ -180,7 +179,7 @@ class ImageFrontMatter:
         self.__alt = alt
         self.__external_links = []
         self.__videos = []
-        self.__thumbnails = []
+        self.__thumbnail = Thumbnail()
         self.__images = []
 
     # Getters and setters
@@ -226,11 +225,11 @@ class ImageFrontMatter:
     def set_videos(self, videos):
         self.__videos = videos
 
-    def get_thumbnails(self):
-        return self.__thumbnails
+    def get_thumbnail(self):
+        return self.__thumbnail
     
-    def set_thumbnails(self, thumbnails):
-        self.__thumbnails = thumbnails
+    def set_thumbnail(self, thumbnail):
+        self.__thumbnail = thumbnail
 
     def get_images(self):
         return self.__images
@@ -251,9 +250,8 @@ class ImageFrontMatter:
         print("Videos:")
         for video in self.get_videos():
             video.print_details()
-        print("Thumbnails:")
-        for thumbnail in self.get_thumbnails():
-            thumbnail.print_details()
+        print("Thumbnail:")
+        self.get_thumbnail().print_details()
         print("Images:")
         for image in self.get_images():
             image.print_details()

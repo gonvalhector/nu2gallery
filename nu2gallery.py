@@ -38,6 +38,9 @@ def main():
     videos = prompt_videos(short_name)
     front_matter.set_videos(videos)
 
+    # Prompt user for thumbnail
+    thumbnail = prompt_thumbnail(short_name)
+    
 
     # Add thumbnail links
     print("Let's add the thumbnails.")
@@ -187,7 +190,7 @@ def main():
 
 
 def prompt_category():
-    ''' Prompt the user for the image's category and returns it in a string. '''
+    ''' Prompts the user for the image's category and returns it in a string. '''
 
     # All categories
     categories = {"A": "pixel_art", "B": "watercolor_art",
@@ -208,7 +211,7 @@ def prompt_category():
 
 
 def prompt_short_name():
-    ''' Prompt the user for the image's short name and returns it in a string.'''
+    ''' Prompts the user for the image's short name and returns it in a string. '''
 
     # Keep prompting user for valid input
     while True:
@@ -224,8 +227,8 @@ def prompt_short_name():
 
 
 def prompt_title(short_name):
-    ''' Prompt the user for the image's title and returns it in a string.
-        It takes a short_name argument for its prompt.                    '''
+    ''' Prompts the user for the image's title and returns it in a string.
+        It takes a short_name argument for its prompt.                     '''
 
     # Keep prompting user for valid input
     while True:
@@ -241,8 +244,8 @@ def prompt_title(short_name):
 
 
 def prompt_alt(short_name):
-    ''' Prompt the user for the image's alt text and returns it in a string.
-        It takes a short_name argument for its prompt.                       '''
+    ''' Prompts the user for the image's alt text and returns it in a string.
+        It takes a short_name argument for its prompt.                        '''
 
     # Keep prompting user for valid input
     while True:
@@ -258,8 +261,8 @@ def prompt_alt(short_name):
 
 
 def prompt_preview(short_name):
-    ''' Prompt the user for the image's preview image link and returns it in a string.
-        It takes a short_name argument for its prompt.                                 '''
+    ''' Prompts the user for the image's preview image link and returns it in a string.
+        It takes a short_name argument for its prompt.                                  '''
 
     # Keep prompting user for valid input
     while True:
@@ -275,8 +278,8 @@ def prompt_preview(short_name):
 
 
 def prompt_external_link(i):
-    ''' Prompt the user for the image's external link and returns it as an ExternalLink object.
-        It takes an iterator as an argument to keep track of the current external link.         '''
+    ''' Prompts the user for the image's external link and returns it as an ExternalLink object.
+        It takes an iterator as an argument to keep track of the current external link.          '''
     
     # Create ExternalLink object
     external_link = ExternalLink()
@@ -338,7 +341,7 @@ def prompt_external_link(i):
 def prompt_external_links(short_name):
     ''' Prompts the user for the image's number of external links and returns
         them as a list of ExternalLink objects.
-        It takes a short_name argument for its prompt.                                          '''
+        It takes a short_name argument for its prompt.                        '''
     
     # Create empty ExternalLink objects list
     external_links = []
@@ -382,8 +385,8 @@ def prompt_external_links(short_name):
 
 
 def prompt_video(i):
-    ''' Prompt the user for the image's video and returns it as a Video object.
-        It takes an iterator as an argument to keep track of the current video. '''
+    ''' Prompts the user for the image's video and returns it as a Video object.
+        It takes an iterator as an argument to keep track of the current video.  '''
     
     # Create Video object
     video = Video()
@@ -420,7 +423,7 @@ def prompt_video(i):
 def prompt_videos(short_name):
     ''' Prompts the user for the image's number of videos and returns
         them as a list of Video objects.
-        It takes a short_name argument for its prompt.                                          '''
+        It takes a short_name argument for its prompt.                '''
 
     # Create empty Video objects list
     videos = []
@@ -462,7 +465,14 @@ def prompt_videos(short_name):
 
 
 def prompt_thumbnail():
-    pass
+    ''' Prompts the user for the image's thumnail and returns it as a Thumbnail object.'''
+
+    # Create Thumbnail object
+    thumbnail = Thumbnail()
+
+
+
+    return thumbnail
 
 
 def prompt_image():
