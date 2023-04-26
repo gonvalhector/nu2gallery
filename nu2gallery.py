@@ -405,13 +405,10 @@ def prompt_video(i):
     # Keep prompting user for valid URL
     while True:
         url_prompt = "Enter the shareable link you copied:\n"
-        shareable_url = input(url_prompt)
+        url = input(url_prompt)
 
         # Check input is valid
-        if len(shareable_url) > 0:
-            # Transform shareable YT link to embed link
-            split_url = shareable_url.split("https://youtu.be/")[1]
-            url = "https://www.youtube.com/embed/" + split_url + "?rel=0"
+        if len(url) > 0:
             video.set_url(url)
             break
         else:

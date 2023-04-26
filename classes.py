@@ -112,12 +112,19 @@ class Video:
         return self.__url
     
     def set_url(self, url):
-        self.__url = url
+        self.__url = self.get_embed_url(url)
 
     # Print data
     def print_details(self):
         print("Type: ", self.get_type())
         print("URL: ", self.get_url())
+
+    # Takes a "shareable" url and returns an "embed" url
+    def get_embed_url(shareable_url):
+        split_url = shareable_url.split("https://youtu.be/")[1]
+        return "https://www.youtube.com/embed/" + split_url + "?rel=0"
+          
+            
 
 
 class ExternalLink:
