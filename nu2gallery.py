@@ -40,10 +40,10 @@ def main():
 
     # Prompt user for thumbnail
     thumbnail = prompt_thumbnail(short_name)
-    
+    front_matter.set_thumbnail(thumbnail)
 
     # Add thumbnail links
-    print("Let's add the thumbnails.")
+    print("Let's add the thumbnail.")
     front_matter += "thumbs:\n"
     extensions = []
     thumb_bases = []
@@ -335,6 +335,7 @@ def prompt_external_link(i):
         else:
             print("Invalid input.")
             continue
+
     return external_link
 
 
@@ -417,6 +418,7 @@ def prompt_video(i):
         else:
             print("Invalid input.")
             continue
+
     return Video
 
 
@@ -464,13 +466,62 @@ def prompt_videos(short_name):
     return videos
 
 
-def prompt_thumbnail():
+def prompt_thumbnail(short_name):
     ''' Prompts the user for the image's thumnail and returns it as a Thumbnail object.'''
 
     # Create Thumbnail object
+    print(f"Let's add the thumbnail for '{short_name}'.")
     thumbnail = Thumbnail()
 
+    # Keep prompting user for valid Yes or No input
+    while True:
+        is_animated_prompt = "Is it an animated thumbnail? [Y (Yes) / N (No)]\n"
+        is_animated = input(is_animated_prompt).upper()
+        if is_animated == "Y":
+            # Keep prompting user for valid GIF link
+            while True:
+                link_gif_prompt = "Paste the GIF's link:\n"
+                link_gif = input(link_gif_prompt)
 
+                # Check input is valid
+                if len(link_gif) > 0:
+                    thumbnail.set_link_gif(link_gif)
+                    break
+                else:
+                    print("Invalid input.")
+                    continue
+            break
+        elif is_animated == "N":
+            break
+        else:
+            print("Invalid input.")
+            continue
+
+    # Keep prompting user for valid PNG link
+    while True:
+        link_png_prompt = "Paste the PNG's link:\n"
+        link_png = input(link_png_prompt)
+
+        # Check input is valid
+        if len(link_png) > 0:
+            thumbnail.set_link_png(link_png)
+            break
+        else:
+            print("Invalid input.")
+            continue
+
+    # Keep prompting user for valid JPG link
+    while True:
+        link_jpg_prompt = "Paste the JPG's link:\n"
+        link_jpg = input(link_jpg_prompt)
+
+        # Check input is valid
+        if len(link_jpg) > 0:
+            thumbnail.set_link_jpg(link_jpg)
+            break
+        else:
+            print("Invalid input.")
+            continue
 
     return thumbnail
 
