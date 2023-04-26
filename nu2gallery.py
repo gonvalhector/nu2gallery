@@ -42,49 +42,9 @@ def main():
     thumbnail = prompt_thumbnail(short_name)
     front_matter.set_thumbnail(thumbnail)
 
-    # Add thumbnail links
-    print("Let's add the thumbnail.")
-    front_matter += "thumbs:\n"
-    extensions = []
-    thumb_bases = []
-
-    # If there is an animated image and thumbnail
-    while True:
-        isanimated = input(f"Is there an animated image? [Y/N]\n")
-        if isanimated == "Y" or isanimated == "y":
-            animated = True
-            break
-        elif isanimated == "N" or isanimated == "n":
-            animated = False
-            break
-        else:
-            print("Invalid input.")
-            continue
-    if animated:
-        full_thumb_GIF = input(f"What is the link for the GIF thumbnail of '{short_name}'?\n")
-        thumb_GIF = full_thumb_GIF.split("=")
-        thumb_bases.append(thumb_GIF[0])
-        extensions.append("GIF")
-    full_thumb_PNG = input(f"What is the link for the PNG thumbnail of '{short_name}'?\n")
-    thumb_PNG = full_thumb_PNG.split("=")
-    thumb_bases.append(thumb_PNG[0])
-    extensions.append("PNG")
-    full_thumb_JPG = input(f"What is the link for the JPG thumbnail of '{short_name}'?\n")
-    thumb_JPG = full_thumb_JPG.split("=")
-    thumb_bases.append(thumb_JPG[0])
-    extensions.append("JPG")
-
+    # Prompt user for images
     
 
-    # Image widths in relation to screen widths
-    thumb_scr_w = {"w1920": "=w355", "w1024": "=w284", "w768": "=w213", "w600": "=w166", "w411": "=w114", "w360": "=w100", "w240": "=w66"}
-    for k, v in thumb_scr_w.items():
-        for i in range(len(thumb_bases)):
-            front_matter += f"    {k}_{extensions[i]}: " + thumb_bases[i] + v + "\n"
-
-    print("Let's add the images.")
-
-    # Prompt the user for a number of images
     while True:
         # Convert input string to integer
         try:
