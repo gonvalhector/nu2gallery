@@ -14,6 +14,16 @@ def main():
     category = prompt_category()
     front_matter.set_category(category)
 
+    # Check if there is a pixel art palette
+    if category == "pixel_art":
+        # Prompt user for new image's palette
+        palette = prompt_palette()
+        front_matter.set_palette(palette)
+
+        # Prompt user for palette's mirrors
+        mirrors = prompt_mirrors()
+        front_matter.set_mirrors(mirrors)
+
     # Prompt user for new image's short name
     short_name = prompt_short_name()
     front_matter.set_short_name(short_name)
@@ -565,6 +575,30 @@ def prompt_images(short_name):
 
     # Return Image objects list
     return images
+
+
+def prompt_palette():
+    ''' Prompts the user for the image's palette and returns it in a string. '''
+
+    # Keep prompting user for valid input
+    while True:
+        prompt = "What is the new image's PALETTE?\n"
+        palette = input(prompt)
+
+        # Check input is valid
+        if len(palette) > 0:
+            return palette
+        else:
+            print("Invalid input.")
+            continue
+
+
+def prompt_mirror():
+    pass
+
+
+def prompt_mirrors():
+    pass
 
 
 def write_file():
