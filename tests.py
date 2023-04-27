@@ -1,4 +1,4 @@
-from classes import Image, Thumbnail, Video, ExternalLink, ImageFrontMatter
+from classes import Image, Thumbnail, Video, Mirror, ExternalLink, ImageFrontMatter
 
 
 def main():
@@ -110,11 +110,13 @@ def ImageFrontMatterTests():
     ifm2 = ImageFrontMatter()
     ifm2.print_details()
 
+    print()
+
     # Testing the proper implementation of palette and mirrors properties
     ifm3 = ImageFrontMatter()
     ifm3.set_palette("DS-34")
     mirrors = []
-    mirrors.append(ExternalLink("Zip File", "/assets/downloads/palettes/ds-34 palette.zip"))
+    mirrors.append(Mirror("Zip File", "/assets/downloads/palettes/ds-34 palette.zip"))
     ifm3.set_mirrors(mirrors)
     ifm3.print_details()    
 

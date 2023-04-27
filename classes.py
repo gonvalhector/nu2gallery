@@ -129,17 +129,14 @@ class Video:
         return "https://www.youtube.com/embed/" + split_url + "?rel=0"           
 
 
-class ExternalLink:
-    ''' An external link object consists of a caption, a url,
-        and an optional embed link.                           '''
-
+class Mirror:
+    ''' A mirror object consists of a caption and a url. '''
     # Initializer
-    def __init__(self, caption="", url="", embed=None):
+    def __init__(self, caption="", url=""):
         self.__caption = caption
         self.__url = url
-        self.__embed = embed
 
-    # Getters and setters
+     # Getters and setters
     def get_caption(self):
         return self.__caption
     
@@ -152,6 +149,22 @@ class ExternalLink:
     def set_url(self, url):
         self.__url = url
 
+    # Print data
+    def print_details(self):
+        print("Caption: ", self.get_caption())
+        print("URL: ", self.get_url())
+
+
+class ExternalLink(Mirror):
+    ''' An external link object inherits from the Mirror class
+        and adds an optional embed link.                       '''
+
+    # Initializer
+    def __init__(self, caption="", url="", embed=None):
+        super().__init__(caption, url)
+        self.__embed = embed
+
+    # Getters and setters
     def get_embed(self):
         return self.__embed
     
@@ -160,9 +173,9 @@ class ExternalLink:
 
     # Print data
     def print_details(self):
-        print("Caption: ", self.get_caption())
-        print("URL: ", self.get_url())
-        print("Embed link: ", self.get_embed())
+        super().print_details()
+        if self.get_embed():
+            print("Embed link: ", self.get_embed())
 
 
 class ImageFrontMatter:

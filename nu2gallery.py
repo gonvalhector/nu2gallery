@@ -1,5 +1,5 @@
 from pathlib import Path
-from classes import Image, Thumbnail, Video, ExternalLink, ImageFrontMatter
+from classes import Image, Thumbnail, Video, Mirror, ExternalLink, ImageFrontMatter
 
 def main():
     """ Creates a new MD file with front matter that
