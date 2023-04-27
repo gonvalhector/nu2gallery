@@ -56,30 +56,6 @@ def main():
     images = prompt_images(short_name)
     front_matter.set_images(images)
 
-    # Prompt user for palette
-    while True:
-        is_palette = input(f"Is there a Palette to share for '{short_name}'? [Y/N]\n")
-        if is_palette == "Y" or is_palette == "y":
-            palette_name = input("What is the palette's name?")
-            front_matter += "palette: " + palette_name + "\n"
-            mirror_n = input(f"How many mirrors for the download link are there for '{palette_name}'?\n")
-            for i in range(mirror_n):
-                caption = input(f"What is the caption for mirror #{i + 1}?\n")
-                print(f"Let's add a link for mirror #{i + 1}.")
-                # Promp the user for the original link
-                url = input(f"Enter the full link:\n")
-                front_matter += "   - caption: " + caption + "\n"
-                front_matter += "     url: " + url + "\n"
-                break
-        elif is_palette == "N" or is_palette == "n":
-            print(f"Let's continue with other values for the front matter of '{short_name}'.")
-            break
-        else:
-            print("Invalid input.")
-            continue
-
-    front_matter += "---"
-
     # Date and filename
     date_args = ["YEAR", "MONTH", "DAY"]
     date_values = []
@@ -631,7 +607,34 @@ def prompt_mirror(i):
 
 
 def prompt_mirrors():
-    pass
+    ''' Prompts the user for the image's number of mirrors and returns
+        them as a list of Mirror objects.                              '''
+    
+    # Create empty Mirror objects list
+    mirrors = []
+
+    # Keep prompting user for valid number of mirrors
+    while True:
+        try:
+            n_prompt = "How many MIRRORS are there?\n"
+            n = int(input(n_prompt))
+
+            # Check input is valid
+            if n > 0:
+                # Generate n number of Mirror objects
+                for i in range(n):
+                    mirror = prompt_mirror(i)
+                    mirrors.append(mirror) 
+                break    
+            else:
+                print("Invalid input.")
+                continue
+        except:
+            print("Invalid input.")
+            continue
+    
+    # Return Mirror objects list
+    return mirrors
 
 
 def write_file():
