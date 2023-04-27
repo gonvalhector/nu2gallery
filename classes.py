@@ -15,25 +15,29 @@ class ImageFile:
         return self.__link_gif
     
     def set_link_gif(self, link):
-        self.__link_gif = link
+        self.__link_gif = self.get_split_link(link)
 
     def get_link_png(self):
         return self.__link_png
     
     def set_link_png(self, link):
-        self.__link_png = link
+        self.__link_png = self.get_split_link(link)
 
     def get_link_jpg(self):
         return self.__link_jpg
     
     def set_link_jpg(self, link):
-        self.__link_jpg = link
+        self.__link_jpg = self.get_split_link(link)
 
     # Print data
     def print_details(self):
         print("GIF link: ", self.get_link_gif())
         print("PNG link: ", self.get_link_png())
         print("JPG link: ", self.get_link_jpg())
+
+    # Returns a link without the image's width
+    def get_split_link(self, link):
+        return link.split("=")[0]
 
 
 class Image(ImageFile):
