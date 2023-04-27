@@ -593,8 +593,41 @@ def prompt_palette():
             continue
 
 
-def prompt_mirror():
+def prompt_mirror(i):
+    ''' Prompts the user for a single mirror's data and returns it as a Mirror object.
+        It takes an iterator as an argument to keep track of the current mirror.       '''
+    
+    # Create Mirror object
+    mirror = Mirror()
+
+    # Keep prompting user for valid caption
+    while True:
+        caption_prompt = f"What is mirror #{i + 1}'s  CAPTION?\n"
+        caption = input(caption_prompt)
+
+        # Check input is valid
+        if len(caption) > 0:
+            mirror.set_caption(caption)
+            break
+        else:
+            print("Invalid input.")
+            continue
+
+    # Keep prompting user for valid URL
+    while True:
+        url_prompt = f"What is mirror #{i + 1}'s URL?\n"
+        url = input(url_prompt)
+
+        # Check input is valid
+        if len(url) > 0:
+            mirror.set_url(url)
+            break
+        else:
+            print("Invalid input.")
+            continue
     pass
+
+    return mirror
 
 
 def prompt_mirrors():
