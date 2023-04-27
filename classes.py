@@ -169,10 +169,11 @@ class ExternalLink:
 
 class ImageFrontMatter:
     ''' An image front matter object consists of a category, a short name,
-        a title, a preview image link, alt text, a Thumbnail class object and several lists:
+        a title, a preview image link, alt text, an optional palette, a Thumbnail class object and several lists:
         - A list of ExternalLink class objects.
         - A list of Video class objects.
-        - A list of Image class objects.                                                     '''
+        - A list of Image class objects.                                                                          
+        - An optional list of "mirrors" which is a second list of ExternalLink class objects.                     '''
 
     # Initializer
     def __init__(self, category="", short_name="", title="", preview="", alt=""):
@@ -185,6 +186,8 @@ class ImageFrontMatter:
         self.__videos = []
         self.__thumbnail = Thumbnail()
         self.__images = []
+        self.__palette = None
+        self.__mirrors = None
 
     # Getters and setters
     def get_category(self):
@@ -241,6 +244,18 @@ class ImageFrontMatter:
     def set_images(self, images):
         self.__images = images
 
+    def get_palette(self):
+        return self.__palette
+    
+    def set_palette(self, palette):
+        self.__palette = palette
+
+    def get_mirrors(self):
+        return self.__mirrors
+    
+    def set_mirrors(self, mirrors):
+        self.__mirrors = mirrors
+
     # Print data
     def print_details(self):
         print("Category: ", self.get_category())
@@ -259,3 +274,7 @@ class ImageFrontMatter:
         print("Images:")
         for image in self.get_images():
             image.print_details()
+        if self.__palette:
+            print("Palette: ", self.get_palette())
+            for mirror in self.get_mirrors():
+                mirror.print_details()
