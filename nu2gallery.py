@@ -43,58 +43,8 @@ def main():
     front_matter.set_thumbnail(thumbnail)
 
     # Prompt user for images
-    
-
-    while True:
-        # Convert input string to integer
-        try:
-            n = int(input(f"How many images does '{short_name}' have?\n"))
-        except ValueError:
-            print("Invalid input.")
-            continue
-        else:
-            break
-
-    # List of images and their values
-    if n > 0:
-        front_matter += "images:\n"
-        for j in range(n):
-            extensions = []
-            image_bases = []
-            label = input(f"Image #{j + 1} LABEL:\n")
-            front_matter += "    - label: " + label + "\n"
-            caption = input(f"Image #{j + 1} CAPTION:\n")
-            front_matter += "      caption: " + caption + "\n"
-            full = input(f"Image #{j + 1} FULL size image link:\n")
-            full_lst = full.split("=")
-            front_matter += "      full: " + full_lst[0] + "=w1080" + "\n"
-            if animated:
-                while True:
-                    isGIF = input(f"Is image #{j + 1} an animated image? [Y/N]\n")
-                    if isGIF == "Y" or isGIF == "y":
-                        full_image_GIF = input(f"What is the link for the GIF of image #{j + 1}?\n")
-                        image_GIF = full_image_GIF.split("=")
-                        image_bases.append(image_GIF[0])
-                        extensions.append("GIF")
-                        break
-                    elif isGIF == "N" or isGIF == "n":
-                        break
-                    else:
-                        print("Invalid input.")
-                        continue
-            full_image_PNG = input(f"What is the link for the PNG of image #{j + 1}?\n")
-            image_PNG = full_image_PNG.split("=")
-            image_bases.append(image_PNG[0])
-            extensions.append("PNG")
-            full_image_JPG = input(f"What is the link for the JPG of image #{j + 1}?\n")
-            image_JPG = full_image_JPG.split("=")
-            image_bases.append(image_JPG[0])
-            extensions.append("JPG")
-            # Image widths in relation to screen widths
-            image_scr_w = {"w1920": "=w850", "w1024": "=w711", "w768": "=w533", "w600": "=w416", "w411": "=w285", "w360": "=w250", "w240": "=w166"}
-            for k, v in image_scr_w.items():
-                for l in range(len(image_bases)):
-                    front_matter += f"      {k}_{extensions[l]}: " + image_bases[l] + v + "\n"
+    images = prompt_images(short_name)
+    front_matter.set_images(images)
 
     # Prompt user for palette
     while True:
@@ -238,8 +188,8 @@ def prompt_preview(short_name):
 
 
 def prompt_external_link(i):
-    ''' Prompts the user for the image's external link and returns it as an ExternalLink object.
-        It takes an iterator as an argument to keep track of the current external link.          '''
+    ''' Prompts the user for a single external link's data and returns it as an ExternalLink object.
+        It takes an iterator as an argument to keep track of the current external link.              '''
     
     # Create ExternalLink object
     external_link = ExternalLink()
@@ -346,8 +296,8 @@ def prompt_external_links(short_name):
 
 
 def prompt_video(i):
-    ''' Prompts the user for the image's video and returns it as a Video object.
-        It takes an iterator as an argument to keep track of the current video.  '''
+    ''' Prompts the user for a single video's data and returns it as a Video object.
+        It takes an iterator as an argument to keep track of the current video.      '''
     
     # Create Video object
     video = Video()
@@ -427,7 +377,8 @@ def prompt_videos(short_name):
 
 
 def prompt_thumbnail(short_name):
-    ''' Prompts the user for the image's thumnail and returns it as a Thumbnail object.'''
+    ''' Prompts the user for a single thumbnail's data and returns it as a Thumbnail object.
+        It takes a short_name argument for its prompt.                                       '''
 
     # Create Thumbnail object
     print(f"Let's add the thumbnail for '{short_name}'.")
@@ -486,8 +437,134 @@ def prompt_thumbnail(short_name):
     return thumbnail
 
 
-def prompt_image():
-    pass
+def prompt_image(i):
+    ''' Prompts the user for a single image's data and returns it as an Image object.
+        It takes an iterator as an argument to keep track of the current video.       '''
+    
+    # Create Image object
+    image = Image()
+
+    # Keep prompting user for valid label
+    while True:
+        label_prompt = f"What is image #{i + 1}'s LABEL?\n"
+        label = input(label_prompt)
+
+        # Check input is valid
+        if len(label) > 0:
+            image.set_label(label)
+            break
+        else:
+            print("Invalid input.")
+            continue
+
+    # Keep prompting user for valid caption
+    while True:
+        caption_prompt = f"What is image #{i + 1}'s  CAPTION?\n"
+        caption = input(caption_prompt)
+
+        # Check input is valid
+        if len(caption) > 0:
+            image.set_caption(caption)
+            break
+        else:
+            print("Invalid input.")
+            continue
+
+    # Keep prompting user for valid FULL resolution link
+    while True:
+        link_full_prompt = "Paste the FULL resolution's link:\n"
+        link_full = input(link_full_prompt)
+
+        # Check input is valid
+        if len(link_full) > 0:
+            image.set_link_full(link_full)
+            break
+        else:
+            print("Invalid input.")
+            continue
+
+    # Keep prompting user for valid Yes or No input
+    while True:
+        is_animated_prompt = f"Is image #{i + 1} animated? [Y (Yes) / N (No)]\n"
+        is_animated = input(is_animated_prompt).upper()
+        if is_animated == "Y":
+            # Keep prompting user for valid GIF link
+            while True:
+                link_gif_prompt = "Paste the GIF's link:\n"
+                link_gif = input(link_gif_prompt)
+
+                # Check input is valid
+                if len(link_gif) > 0:
+                    image.set_link_gif(link_gif)
+                    break
+                else:
+                    print("Invalid input.")
+                    continue
+            break
+        elif is_animated == "N":
+            break
+        else:
+            print("Invalid input.")
+            continue
+
+    # Keep prompting user for valid PNG link
+    while True:
+        link_png_prompt = "Paste the PNG's link:\n"
+        link_png = input(link_png_prompt)
+
+        # Check input is valid
+        if len(link_png) > 0:
+            image.set_link_png(link_png)
+            break
+        else:
+            print("Invalid input.")
+            continue
+
+    # Keep prompting user for valid JPG link
+    while True:
+        link_jpg_prompt = "Paste the JPG's link:\n"
+        link_jpg = input(link_jpg_prompt)
+
+        # Check input is valid
+        if len(link_jpg) > 0:
+            image.set_link_jpg(link_jpg)
+            break
+        else:
+            print("Invalid input.")
+            continue
+
+    return image
+
+
+def prompt_images(short_name):
+    ''' Prompts the user for the image's number of images and returns
+        them as a list of Image objects.
+        It takes a short_name argument for its prompt.                '''
+    # Create Image objects list
+    images = []
+
+    # Keep prompting user for valid number of images
+    while True:
+        try:
+            n_prompt = f"How many IMAGES are there for '{short_name}'?\n"
+            n = int(input(n_prompt))
+
+            # Check input is valid
+            if n > 0:
+                # Generate n number of Image objects     
+                for i in range(n):
+                    image = prompt_image(i)
+                    images.append(image)
+                break
+            else:
+                print("Invalid input.")
+                continue
+        except:
+            print("Invalid input.")
+            continue
+
+    # Return Image objects list
+    return images
 
 
 def write_file():
