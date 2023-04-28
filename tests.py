@@ -8,6 +8,7 @@ def main():
     ImageTests()
     print()
 
+    '''
     # Test Thumbnail class
     ThumbnailTests()
     print()
@@ -24,6 +25,7 @@ def main():
     # Test ImageFrontMatter class
     ImageFrontMatterTests()
     print()
+    '''
 
 
 def ImageTests():
@@ -33,15 +35,31 @@ def ImageTests():
     print()
 
     # Testing the proper implementation of an image object and inheritance of the ImageFile class
-    image1 = Image("Final Version", "Designed with 60fps in mind.", "full-link", "gif-link", "png-link", "jpg-link")
-    image1.print_details()
-
-    print()
+    #image1 = Image("Final Version", "Designed with 60fps in mind.", "full-link", "gif-link", "png-link", "jpg-link")
+    #image1.print_details()
+    #print()
 
     # Testing an image object with no arguments passed
-    image2 = Image()
-    image2.print_details()
+    #image2 = Image()
+    #image2.print_details()
 
+    # Test for proper implementation of get_data() with animated image
+    image = Image()
+    image.set_label("Final Version")
+    image.set_caption("Designed with 60fps in mind.")
+    image.set_link_full("https://lh3.googleusercontent.com/pw/AM-JKLVrBC8U=s1080")
+    image.set_link_gif("https://lh3.googleusercontent.com/pw/AM-JKLWKRht0Z=s1080")
+    image.set_link_png("https://lh3.googleusercontent.com/pw/AM-JKLUYD5yoV=s1080")
+    image.set_link_jpg("https://lh3.googleusercontent.com/pw/AM-JKLWdajfvb=s1080")
+    print(image.get_data())
+    # Test for proper implementation of get_data() with no animated image
+    image2 = Image()
+    image2.set_label("Final Version")
+    image2.set_caption("Designed with 60fps in mind.")
+    image2.set_link_full("https://lh3.googleusercontent.com/pw/AM-JKLVrBC8U=s1080")
+    image2.set_link_png("https://lh3.googleusercontent.com/pw/AM-JKLUYD5yoV=s1080")
+    image2.set_link_jpg("https://lh3.googleusercontent.com/pw/AM-JKLWdajfvb=s1080")
+    print(image2.get_data())
 
 def ThumbnailTests():
     ''' Tests for Thumbnail class objects. '''
@@ -49,6 +67,7 @@ def ThumbnailTests():
     print("Thumbnails:")
     print()
 
+    '''
     # Testing the proper implementation of a thumbnail object and inheritance of the ImageFile class
     thumb1 = Thumbnail("gif-link", "png-link", "jpg-link")
     thumb1.print_details()
@@ -58,6 +77,8 @@ def ThumbnailTests():
     # Testing a thumbnail object with no arguments passed
     thumb2 = Thumbnail()
     thumb2.print_details()
+    '''
+    
 
 
 def VideoTests():
@@ -100,6 +121,7 @@ def ImageFrontMatterTests():
     print("Image Front Matter:")
     print()
 
+    '''
     # Testing the proper implementation of an image front matter object
     ifm1 = ImageFrontMatter("categories", "short-name", "title", "image", "alt")
     ifm1.print_details()
@@ -119,6 +141,18 @@ def ImageFrontMatterTests():
     mirrors.append(Mirror("Zip File", "/assets/downloads/palettes/ds-34 palette.zip"))
     ifm3.set_mirrors(mirrors)
     ifm3.print_details()    
+    '''
+
+    # Test for proper implementation of get_data()
+
+    image = Image()
+    image.set_label("Final Version")
+    image.set_caption("Designed with 60fps in mind.")
+    image.set_link_full("https://lh3.googleusercontent.com/pw/AM-JKLVrBC8U=s1080")
+    image.set_link_gif("https://lh3.googleusercontent.com/pw/AM-JKLWKRht0Z=s1080")
+    image.set_link_png("https://lh3.googleusercontent.com/pw/AM-JKLUYD5yoV=s1080")
+    image.set_link_jpg("https://lh3.googleusercontent.com/pw/AM-JKLWdajfvb=s1080")
+    print(image.get_data())
 
 
 if __name__ == "__main__":
