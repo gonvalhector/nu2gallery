@@ -81,6 +81,32 @@ class Image(ImageFile):
         print("Full link: ", self.get_link_full())
         super().print_details()
 
+    # Returns a string with all data correctly formatted
+    def get_data(self):
+        # Define type of identations for proper line formatting
+        indentations = {"default" : "    ", "start" : "- ", "specific" : "  ", "newline" : "\n"}
+
+        # Label line
+        data = indentations["default"] + indentations["start"] + "label: " + self.get_label() + indentations["newline"]
+
+        # Caption line
+        data += indentations["default"] + indentations["specific"] + "caption: " + self.get_label() + indentations["newline"]
+
+        # Full link line
+        data += indentations["default"] + indentations["specific"] + "full: " + self.get_link_full() + indentations["newline"]
+
+        # GIF link line
+        if self.get_link_gif():
+            data += indentations["default"] + indentations["specific"] + "GIF: " + self.get_link_gif() + indentations["newline"]
+
+        # PNG link line
+        data += indentations["default"] + indentations["specific"] + "PNG: " + self.get_link_png() + indentations["newline"]
+
+        # JPG link line
+        data += indentations["default"] + indentations["specific"] + "JPG: " + self.get_link_jpg() + indentations["newline"]
+
+        return data
+
 
 class Thumbnail(ImageFile):
     ''' A thumbnail object inherits from ImageFile and consists of several links:
@@ -95,6 +121,10 @@ class Thumbnail(ImageFile):
     # Print data
     def print_details(self):
         super().print_details()
+
+    # Returns a string with all data correctly formatted
+    def get_data(self):
+        pass
 
 
 class Video:
@@ -126,7 +156,11 @@ class Video:
     # Takes a "shareable" url and returns an "embed" url
     def get_embed_url(shareable_url):
         split_url = shareable_url.split("https://youtu.be/")[1]
-        return "https://www.youtube.com/embed/" + split_url + "?rel=0"           
+        return "https://www.youtube.com/embed/" + split_url + "?rel=0"  
+
+    # Returns a string with all data correctly formatted
+    def get_data(self):
+        pass         
 
 
 class Mirror:
@@ -154,6 +188,10 @@ class Mirror:
         print("Caption: ", self.get_caption())
         print("URL: ", self.get_url())
 
+    # Returns a string with all data correctly formatted
+    def get_data(self):
+        pass
+
 
 class ExternalLink(Mirror):
     ''' An external link object inherits from the Mirror class
@@ -176,6 +214,10 @@ class ExternalLink(Mirror):
         super().print_details()
         if self.get_embed():
             print("Embed link: ", self.get_embed())
+
+    # Returns a string with all data correctly formatted
+    def get_data(self):
+        pass
 
 
 class ImageFrontMatter:
@@ -289,3 +331,7 @@ class ImageFrontMatter:
             print("Palette: ", self.get_palette())
             for mirror in self.get_mirrors():
                 mirror.print_details()
+
+    # Returns a string with all data correctly formatted
+    def get_data(self):
+        pass
