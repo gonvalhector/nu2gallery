@@ -380,4 +380,59 @@ class ImageFrontMatter:
 
     # Returns a string with all data correctly formatted
     def get_data(self):
-        pass
+        triple_dashes = "---"
+        newline = "\n"
+
+        # Start of front matter data
+        data = triple_dashes + newline
+
+        # Category line
+        data += "category: " + self.get_category() + newline
+
+        # Short name line
+        data += "short_name: " + self.get_short_name() + newline
+
+        # Title line
+        data += "title: " + self.get_title() + newline
+
+        # Preview image line
+        data += "image: " + self.get_preview() + newline
+
+        # Alternate text line
+        data += "alt: " + self.get_alt() + newline
+
+        # External Links lines
+        if self.get_external_links():
+            data += "external:" + newline
+            for link in self.get_external_links():
+                data += link.get_data()
+
+        # Videos lines
+        if self.get_videos():
+            data += "video:" + newline
+            for video in self.get_videos():
+                data += video.get_data()
+
+        # Palette line
+        if self.get_palette():
+            data += "palette: " + self.get_palette() + newline
+        
+        # Mirrors lines
+        if self.get_mirrors():
+            data += "mirrors:" + newline
+            for mirror in self.get_mirrors():
+                data += mirror.get_data()
+
+        # Thumbs lines
+        data += "thumbs:" + newline
+        data += self.get_thumbnail().get_data()
+
+        # Images lines
+        data += "images:" + newline
+        for image in self.get_images():
+            data += image.get_data()
+
+        # End of front matter data
+        data += triple_dashes + newline
+
+        return data
