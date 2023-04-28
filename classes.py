@@ -124,7 +124,22 @@ class Thumbnail(ImageFile):
 
     # Returns a string with all data correctly formatted
     def get_data(self):
-        pass
+        # Define type of identations for proper line formatting
+        indentations = {"default" : "    ", "newline" : "\n"}
+
+        data = ""
+
+        # GIF link line
+        if self.get_link_gif():
+            data += indentations["default"] + "GIF: " + self.get_link_gif() + indentations["newline"]
+
+        # PNG link line
+        data += indentations["default"] + "PNG: " + self.get_link_png() + indentations["newline"]
+
+        # JPG link line
+        data += indentations["default"] + "JPG: " + self.get_link_jpg() + indentations["newline"]
+
+        return data
 
 
 class Video:
