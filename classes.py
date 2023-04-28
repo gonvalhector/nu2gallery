@@ -254,7 +254,7 @@ class ExternalLink(Mirror):
         indentations = {"default" : "    ", "start" : "- ", "specific" : "  ", "newline" : "\n"}
 
         # Caption line
-        data = indentations["default"] + indentations["start"] + "type: " + self.get_caption() + indentations["newline"]
+        data = indentations["default"] + indentations["start"] + "caption: " + self.get_caption() + indentations["newline"]
 
         # URL line
         data += indentations["default"] + indentations["specific"] + "url: " + self.get_url() + indentations["newline"]
