@@ -4,15 +4,17 @@ from classes import Image, Thumbnail, Video, Mirror, ExternalLink, ImageFrontMat
 def main():
     '''Calls all test functions. '''
 
+    '''
     # Test Image class
     ImageTests()
     print()
-
     '''
+
     # Test Thumbnail class
     ThumbnailTests()
     print()
-
+    
+    '''
     # Test Video class
     VideoTests()
     print()
@@ -52,6 +54,7 @@ def ImageTests():
     image.set_link_png("https://lh3.googleusercontent.com/pw/AM-JKLUYD5yoV=s1080")
     image.set_link_jpg("https://lh3.googleusercontent.com/pw/AM-JKLWdajfvb=s1080")
     print(image.get_data())
+
     # Test for proper implementation of get_data() with no animated image
     image2 = Image()
     image2.set_label("Final Version")
@@ -78,7 +81,19 @@ def ThumbnailTests():
     thumb2 = Thumbnail()
     thumb2.print_details()
     '''
-    
+
+    # Test for proper implementation of get_data() with animated thumbnail
+    thumb = Thumbnail()
+    thumb.set_link_gif("https://lh3.googleusercontent.com/pw/AM-JKLWKRht0Z=s1080")
+    thumb.set_link_png("https://lh3.googleusercontent.com/pw/AM-JKLUYD5yoV=s1080")
+    thumb.set_link_jpg("https://lh3.googleusercontent.com/pw/AM-JKLWdajfvb=s1080")
+    print(thumb.get_data())
+
+    # Test for proper implementation of get_data() with no animated thumbnail
+    thumb2 = Thumbnail()
+    thumb2.set_link_png("https://lh3.googleusercontent.com/pw/AM-JKLUYD5yoV=s1080")
+    thumb2.set_link_jpg("https://lh3.googleusercontent.com/pw/AM-JKLWdajfvb=s1080")
+    print(thumb2.get_data())
 
 
 def VideoTests():
@@ -144,6 +159,7 @@ def ImageFrontMatterTests():
     '''
 
     # Test for proper implementation of get_data()
+    ifm = ImageFrontMatter()
 
     image = Image()
     image.set_label("Final Version")
@@ -152,7 +168,11 @@ def ImageFrontMatterTests():
     image.set_link_gif("https://lh3.googleusercontent.com/pw/AM-JKLWKRht0Z=s1080")
     image.set_link_png("https://lh3.googleusercontent.com/pw/AM-JKLUYD5yoV=s1080")
     image.set_link_jpg("https://lh3.googleusercontent.com/pw/AM-JKLWdajfvb=s1080")
-    print(image.get_data())
+
+    thumb = Thumbnail()
+    thumb.set_link_gif("https://lh3.googleusercontent.com/pw/AM-JKLWKRht0Z=s1080")
+    thumb.set_link_png("https://lh3.googleusercontent.com/pw/AM-JKLUYD5yoV=s1080")
+    thumb.set_link_jpg("https://lh3.googleusercontent.com/pw/AM-JKLWdajfvb=s1080")
 
 
 if __name__ == "__main__":
