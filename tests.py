@@ -8,7 +8,6 @@ def main():
     # Test Image class
     ImageTests()
     print()
-    '''
 
     # Test Thumbnail class
     ThumbnailTests()
@@ -19,7 +18,7 @@ def main():
     VideoTests()
     print()
 
-    
+    '''
     # Test ExternalLink class
     ExternalLinkTests()
     print()
@@ -102,6 +101,7 @@ def VideoTests():
     print("Videos:")
     print()
 
+    '''
     # Testing the proper implementation of a video object
     video1 = Video("Animation", "video-url")
     video1.print_details()
@@ -111,6 +111,13 @@ def VideoTests():
     # Testing a video object with no arguments passed
     video2 = Video()
     video2.print_details()
+    '''
+
+    # Test for proper implementation of get_data()
+    video = Video()
+    video.set_type("Animation")
+    video.set_url("https://youtu.be/LioP2bn03sY")
+    print(video.get_data())
 
 
 def ExternalLinkTests():
