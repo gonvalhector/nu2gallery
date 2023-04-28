@@ -13,16 +13,16 @@ def main():
     ThumbnailTests()
     print()
     
-    '''
     # Test Video class
     VideoTests()
     print()
-
     '''
+
     # Test ExternalLink class
     ExternalLinkTests()
     print()
 
+    '''
     # Test ImageFrontMatter class
     ImageFrontMatterTests()
     print()
@@ -62,6 +62,7 @@ def ImageTests():
     image2.set_link_png("https://lh3.googleusercontent.com/pw/AM-JKLUYD5yoV=s1080")
     image2.set_link_jpg("https://lh3.googleusercontent.com/pw/AM-JKLWdajfvb=s1080")
     print(image2.get_data())
+
 
 def ThumbnailTests():
     ''' Tests for Thumbnail class objects. '''
@@ -126,6 +127,7 @@ def ExternalLinkTests():
     print("External Links:")
     print()
 
+    '''
     # Testing the proper implementation of an external link object
     el1 = ExternalLink("Instagram", "ig", "embed-link")
     el1.print_details()
@@ -135,6 +137,20 @@ def ExternalLinkTests():
     # Testing an external link object with no arguments passed
     el2 = ExternalLink()
     el2.print_details()
+    '''
+
+    # Test for proper implementation of get_data() with embed link
+    el = ExternalLink()
+    el.set_caption("Instagram")
+    el.set_url("ig")
+    el.set_embed("https://www.instagram.com/p/CEMjnnMnwkh/?utm_source=ig_embed&amp;utm_campaign=loading")
+    print(el.get_data())
+
+    # Test for proper implementation of get_data() with no embed link
+    el2 = ExternalLink()
+    el2.set_caption("GameJolt")
+    el2.set_url("https://gamejolt.com/p/yay-for-videos-video-version-of-my-ruins-of-a-church-animated-pi-tqchpznm")
+    print(el2.get_data())
 
 
 def ImageFrontMatterTests():
@@ -180,6 +196,10 @@ def ImageFrontMatterTests():
     thumb.set_link_gif("https://lh3.googleusercontent.com/pw/AM-JKLWKRht0Z=s1080")
     thumb.set_link_png("https://lh3.googleusercontent.com/pw/AM-JKLUYD5yoV=s1080")
     thumb.set_link_jpg("https://lh3.googleusercontent.com/pw/AM-JKLWdajfvb=s1080")
+
+    video = Video()
+    video.set_type("Animation")
+    video.set_url("https://youtu.be/LioP2bn03sY")
 
 
 if __name__ == "__main__":
