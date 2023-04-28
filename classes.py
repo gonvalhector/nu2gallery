@@ -175,7 +175,16 @@ class Video:
 
     # Returns a string with all data correctly formatted
     def get_data(self):
-        pass         
+        # Define type of identations for proper line formatting
+        indentations = {"default" : "    ", "start" : "- ", "specific" : "  ", "newline" : "\n"}
+
+        # Type line
+        data = indentations["default"] + indentations["start"] + "type: " + self.get_type() + indentations["newline"]
+
+        # URL line
+        data += indentations["default"] + indentations["specific"] + "url: " + self.get_url() + indentations["newline"]
+
+        return data       
 
 
 class Mirror:
