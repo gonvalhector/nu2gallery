@@ -6,29 +6,29 @@ def main():
 
     '''
     # Test Image class
-    ImageTests()
+    image_tests()
     print()
 
     # Test Thumbnail class
-    ThumbnailTests()
+    thumbnail_tests()
     print()
     
     # Test Video class
-    VideoTests()
+    video_tests()
     print()
 
     # Test ExternalLink class
-    ExternalLinkTests()
+    external_link_tests()
     print()
 
     '''
 
     # Test ImageFrontMatter class
-    ImageFrontMatterTests()
+    image_front_matter_tests()
     print()
 
 
-def ImageTests():
+def image_tests():
     ''' Tests for Image class objects. '''
 
     print("Images:")
@@ -63,7 +63,7 @@ def ImageTests():
     print(image2.get_data())
 
 
-def ThumbnailTests():
+def thumbnail_tests():
     ''' Tests for Thumbnail class objects. '''
 
     print("Thumbnails:")
@@ -95,7 +95,7 @@ def ThumbnailTests():
     print(thumb2.get_data())
 
 
-def VideoTests():
+def video_tests():
     ''' Tests for Video class objects. '''
 
     print("Videos:")
@@ -120,7 +120,7 @@ def VideoTests():
     print(video.get_data())
 
 
-def ExternalLinkTests():
+def external_link_tests():
     ''' Tests for ExternalLink class objects. '''
 
     print("External Links:")
@@ -152,7 +152,7 @@ def ExternalLinkTests():
     print(el2.get_data())
 
 
-def ImageFrontMatterTests():
+def image_front_matter_tests():
     ''' Tests for ImageFrontMatter class objects. '''
 
     print("Image Front Matter:")
