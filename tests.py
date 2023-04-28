@@ -16,17 +16,16 @@ def main():
     # Test Video class
     VideoTests()
     print()
-    '''
 
     # Test ExternalLink class
     ExternalLinkTests()
     print()
 
     '''
+
     # Test ImageFrontMatter class
     ImageFrontMatterTests()
     print()
-    '''
 
 
 def ImageTests():
@@ -181,9 +180,41 @@ def ImageFrontMatterTests():
     ifm3.print_details()    
     '''
 
-    # Test for proper implementation of get_data()
+    # Test for proper implementation of get_data() with no palette and mirrors
     ifm = ImageFrontMatter()
 
+    ifm.set_category("pixel_art")
+    ifm.set_short_name("roac_animated")
+    ifm.set_title("Ruins of a Church Animated")
+    ifm.set_preview("https://lh3.googleusercontent.com/pw/ACtC-3egaI1Wc9dhcGCoUxyEd5do=w1200-h630-no?authuser=0")
+    ifm.set_alt("Animated pixel art painting of a church in ruins")
+
+    external_links = []
+    el = ExternalLink()
+    el.set_caption("Instagram")
+    el.set_url("ig")
+    el.set_embed("https://www.instagram.com/p/CEMjnnMnwkh/?utm_source=ig_embed&amp;utm_campaign=loading")
+    external_links.append(el)
+    el2 = ExternalLink()
+    el2.set_caption("GameJolt")
+    el2.set_url("https://gamejolt.com/p/yay-for-videos-video-version-of-my-ruins-of-a-church-animated-pi-tqchpznm")
+    external_links.append(el2)
+    ifm.set_external_links(external_links)
+
+    videos = []
+    video = Video()
+    video.set_type("Animation")
+    video.set_url("https://youtu.be/LioP2bn03sY")
+    videos.append(video)
+    ifm.set_videos(videos)
+
+    thumb = Thumbnail()
+    thumb.set_link_gif("https://lh3.googleusercontent.com/pw/AM-JKLWKRht0Z=s1080")
+    thumb.set_link_png("https://lh3.googleusercontent.com/pw/AM-JKLUYD5yoV=s1080")
+    thumb.set_link_jpg("https://lh3.googleusercontent.com/pw/AM-JKLWdajfvb=s1080")
+    ifm.set_thumbnail(thumb)
+
+    images = []
     image = Image()
     image.set_label("Final Version")
     image.set_caption("Designed with 60fps in mind.")
@@ -191,15 +222,71 @@ def ImageFrontMatterTests():
     image.set_link_gif("https://lh3.googleusercontent.com/pw/AM-JKLWKRht0Z=s1080")
     image.set_link_png("https://lh3.googleusercontent.com/pw/AM-JKLUYD5yoV=s1080")
     image.set_link_jpg("https://lh3.googleusercontent.com/pw/AM-JKLWdajfvb=s1080")
+    images.append(image)
+    ifm.set_images(images)
+
+    print(ifm.get_data())
+
+    print()
+
+    # Test for proper implementation of get_data() with palette and mirrors
+    ifm2 = ImageFrontMatter()
+
+    ifm2.set_category("pixel_art")
+    ifm2.set_short_name("roac_animated")
+    ifm2.set_title("Ruins of a Church Animated")
+    ifm2.set_preview("https://lh3.googleusercontent.com/pw/ACtC-3egaI1Wc9dhcGCoUxyEd5do=w1200-h630-no?authuser=0")
+    ifm2.set_alt("Animated pixel art painting of a church in ruins")
+    ifm2.set_palette("DS-34")
+
+    mirrors = []
+    mirror = Mirror()
+    mirror.set_caption("Zip File")
+    mirror.set_url("/assets/downloads/palettes/ds-34 palette.zip")
+    mirrors.append(mirror)
+    mirror2 = Mirror()
+    mirror2.set_caption("Gdrive")
+    mirror2.set_url("https://drive.google.com/drive/foldersVUp9QVWIPloV?usp=sharing")
+    mirrors.append(mirror2)
+    ifm2.set_mirrors(mirrors)
+
+    external_links = []
+    el = ExternalLink()
+    el.set_caption("Instagram")
+    el.set_url("ig")
+    el.set_embed("https://www.instagram.com/p/CEMjnnMnwkh/?utm_source=ig_embed&amp;utm_campaign=loading")
+    external_links.append(el)
+    el2 = ExternalLink()
+    el2.set_caption("GameJolt")
+    el2.set_url("https://gamejolt.com/p/yay-for-videos-video-version-of-my-ruins-of-a-church-animated-pi-tqchpznm")
+    external_links.append(el2)
+    ifm2.set_external_links(external_links)
+
+    videos = []
+    video = Video()
+    video.set_type("Animation")
+    video.set_url("https://youtu.be/LioP2bn03sY")
+    videos.append(video)
+    ifm2.set_videos(videos)
 
     thumb = Thumbnail()
     thumb.set_link_gif("https://lh3.googleusercontent.com/pw/AM-JKLWKRht0Z=s1080")
     thumb.set_link_png("https://lh3.googleusercontent.com/pw/AM-JKLUYD5yoV=s1080")
     thumb.set_link_jpg("https://lh3.googleusercontent.com/pw/AM-JKLWdajfvb=s1080")
+    ifm2.set_thumbnail(thumb)
 
-    video = Video()
-    video.set_type("Animation")
-    video.set_url("https://youtu.be/LioP2bn03sY")
+    images = []
+    image = Image()
+    image.set_label("Final Version")
+    image.set_caption("Designed with 60fps in mind.")
+    image.set_link_full("https://lh3.googleusercontent.com/pw/AM-JKLVrBC8U=s1080")
+    image.set_link_gif("https://lh3.googleusercontent.com/pw/AM-JKLWKRht0Z=s1080")
+    image.set_link_png("https://lh3.googleusercontent.com/pw/AM-JKLUYD5yoV=s1080")
+    image.set_link_jpg("https://lh3.googleusercontent.com/pw/AM-JKLWdajfvb=s1080")
+    images.append(image)
+    ifm2.set_images(images)
+
+    print(ifm2.get_data())
 
 
 if __name__ == "__main__":
