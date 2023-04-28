@@ -56,13 +56,8 @@ def main():
     images = prompt_images(short_name)
     front_matter.set_images(images)
 
-    # Date and filename
-    date_args = ["YEAR", "MONTH", "DAY"]
-    date_values = []
-    for arg in date_args:
-        date_value = input(f"What {arg} was '{short_name}' posted?\n")
-        date_values.append(date_value)
-    filename = date_values[0] + "-" + date_values[1] + "-" + date_values[2] + "-" + short_name + ".md" 
+    # Define new image's filename 
+    filename = get_filename(short_name)
 
     # Prompt user for confirmation to write file
     print(front_matter)
@@ -635,6 +630,26 @@ def prompt_mirrors():
     
     # Return Mirror objects list
     return mirrors
+
+
+def get_filename(short_name):
+    # Define dates for the prompts
+    date_prompts = ("YEAR", "MONTH", "DAY")
+    date_values = []
+
+    for prompt in date_prompts:
+        # Keep prompting the user for valid input
+        while True:
+            date_value = input(f"What {prompt} was '{short_name}' posted?\n")
+            # Check input is a number
+            if date_value.isnumeric():
+                date_values.append(date_value)
+                break
+            else:
+                print("Invalid input.")       
+    filename = date_values[0] + "-" + date_values[1] + "-" + date_values[2] + "-" + short_name + ".md"
+
+    return filename
 
 
 def write_file():
