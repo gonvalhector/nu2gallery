@@ -593,7 +593,6 @@ def prompt_mirror(i):
         else:
             print("Invalid input.")
             continue
-    pass
 
     return mirror
 
