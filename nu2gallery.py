@@ -535,7 +535,7 @@ def prompt_palette(category):
     ''' Prompts the user for the image's palette and returns it in a string.
         Takes a category as an argument and returns None if there is no palette. '''
 
-    # A palette and its mirrors are exclusive to image's of pixel art category
+    # A palette and its mirrors are exclusive to images with pixel art category
     if category == "pixel_art":
         # Keep prompting user for valid Yes or No input
         while True:
@@ -557,6 +557,8 @@ def prompt_palette(category):
                 return None
             else:
                 print("Invalid input.")
+    else:
+        return None
 
 
 def prompt_mirror(i):
