@@ -291,7 +291,7 @@ def prompt_video(i):
             print("Invalid input.")
             continue
 
-    return Video
+    return video
 
 
 def prompt_videos(short_name):
