@@ -17,7 +17,7 @@ def main():
     # Check if there is a pixel art palette
     if category == "pixel_art":
         # Prompt user for new image's palette
-        palette = prompt_palette()
+        palette = prompt_palette(category)
         front_matter.set_palette(palette)
 
         # Prompt user for palette's mirrors
@@ -531,20 +531,32 @@ def prompt_images(short_name):
     return images
 
 
-def prompt_palette():
-    ''' Prompts the user for the image's palette and returns it in a string. '''
+def prompt_palette(category):
+    ''' Prompts the user for the image's palette and returns it in a string.
+        Returns None if there is no palette.                                 '''
 
-    # Keep prompting user for valid input
-    while True:
-        prompt = "What is the new image's PALETTE?\n"
-        palette = input(prompt)
+    # A palette and its mirrors are exclusive to image's of pixel art category
+    if category == "pixel_art":
+        # Keep prompting user for valid Yes or No input
+        while True:
+            has_palette_prompt = "Is there a PALETTE? [Y (Yes) / N (No)]\n"
+            has_palette = input(has_palette_prompt).upper()
+            if has_palette == "Y":
+                # Keep prompting user for valid input
+                while True:
+                    prompt = "What is the new image's PALETTE?\n"
+                    palette = input(prompt)
 
-        # Check input is valid
-        if len(palette) > 0:
-            return palette
-        else:
-            print("Invalid input.")
-            continue
+                    # Check input is valid
+                    if len(palette) > 0:
+                        return palette
+                    else:
+                        print("Invalid input.")
+                        continue
+            elif has_palette == "N":
+                return None
+            else:
+                print("Invalid input.")
 
 
 def prompt_mirror(i):
