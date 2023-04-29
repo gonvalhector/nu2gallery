@@ -14,15 +14,13 @@ def main():
     category = prompt_category()
     front_matter.set_category(category)
 
-    # Check if there is a pixel art palette
-    if category == "pixel_art":
-        # Prompt user for new image's palette
-        palette = prompt_palette(category)
-        front_matter.set_palette(palette)
+    # Prompt user for new image's palette
+    palette = prompt_palette(category)
+    front_matter.set_palette(palette)
 
-        # Prompt user for palette's mirrors
-        mirrors = prompt_mirrors(palette)
-        front_matter.set_mirrors(mirrors)
+    # Prompt user for palette's mirrors
+    mirrors = prompt_mirrors(palette)
+    front_matter.set_mirrors(mirrors)
 
     # Prompt user for new image's short name
     short_name = prompt_short_name()
