@@ -59,25 +59,8 @@ def main():
     # Define new image's filename 
     filename = get_filename(short_name)
 
-    # Prompt user for confirmation to write file
-    print(front_matter)
-    while True:
-        write_file = input(f"Do you want '{filename}' to be written with that front matter? [Y/N]\n")
-        if write_file == "Y" or write_file == "y":
-            print(f"Writing '{filename}' ...")
-            current_dir = Path(__file__).parent
-            path = current_dir / filename
-            file = open(path, 'w')
-            file.write(front_matter)
-            print(f"'{filename}' succesfully created.")
-            print("Thank you for using Nu2Gallery.")
-            exit()
-        elif write_file == "N" or write_file == "n":
-            print("Thank you for using Nu2Gallery.")
-            exit()
-        else:
-            print("Invalid input.")
-            continue
+    # Write file and exit
+    write_file(front_matter.get_data(), filename)
 
 
 def prompt_category():
@@ -633,6 +616,9 @@ def prompt_mirrors():
 
 
 def get_filename(short_name):
+    ''' Prompts the user for the image's posting date and returns a filename in a string.
+        It takes a short name argument for the prompts and filename.                      '''
+
     # Define dates for the prompts
     date_prompts = ("YEAR", "MONTH", "DAY")
     date_values = []
@@ -652,8 +638,40 @@ def get_filename(short_name):
     return filename
 
 
-def write_file():
-    pass
+def write_file(data, filename):
+    ''' Prints the front matter of the image and prompts the user for 
+        confirmation to write the file.
+        Takes data string to print and a filename string to write the final file. '''
+
+    # Print formatted front matter data
+    print("Here's the front matter:")
+    print(data)
+
+    # Keep prompting the user for a valid Yes or No input
+    while True:
+        confirm = input(f"Do you want '{filename}' to be written with that front matter? [Y (Yes) / N (No)]\n").upper()
+        if confirm == "Y":
+            print(f"Writing '{filename}' ...")
+            # Get current directory
+            current_dir = Path(__file__).parent
+            # Define directory to write file to
+            images_dir = current_dir / "images"
+            # Create directory if it doesn't exist
+            if not images_dir.exists():
+                images_dir.mkdir()
+            # Write the final file
+            path = images_dir / filename
+            file = open(path, 'w')
+            file.write(data)
+            print(f"'{filename}' was succesfully created inside /images directory.")
+            print("Thank you for using Nu2Gallery.")
+            exit()
+        elif write_file == "N":
+            print("Thank you for using Nu2Gallery.")
+            exit()
+        else:
+            print("Invalid input.")
+            continue
 
 
 if __name__ == "__main__":
