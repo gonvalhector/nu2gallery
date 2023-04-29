@@ -21,7 +21,7 @@ def main():
         front_matter.set_palette(palette)
 
         # Prompt user for palette's mirrors
-        mirrors = prompt_mirrors()
+        mirrors = prompt_mirrors(palette)
         front_matter.set_mirrors(mirrors)
 
     # Prompt user for new image's short name
@@ -533,7 +533,7 @@ def prompt_images(short_name):
 
 def prompt_palette(category):
     ''' Prompts the user for the image's palette and returns it in a string.
-        Returns None if there is no palette.                                 '''
+        Takes a category as an argument and returns None if there is no palette. '''
 
     # A palette and its mirrors are exclusive to image's of pixel art category
     if category == "pixel_art":
@@ -596,35 +596,40 @@ def prompt_mirror(i):
     return mirror
 
 
-def prompt_mirrors():
-    ''' Prompts the user for the image's number of mirrors and returns
-        them as a list of Mirror objects.                              '''
+def prompt_mirrors(palette):
+    ''' Prompts the user for the image's number of mirrors and returns them as 
+        a list of Mirror objects.                              
+        Takes a palette as an argument and returns None if there is no palette. '''
     
-    # Create empty Mirror objects list
-    mirrors = []
+    # Mirrors are only created if a palette is given
+    if palette:
+        # Create empty Mirror objects list
+        mirrors = []
 
-    # Keep prompting user for valid number of mirrors
-    while True:
-        try:
-            n_prompt = "How many MIRRORS are there?\n"
-            n = int(input(n_prompt))
+        # Keep prompting user for valid number of mirrors
+        while True:
+            try:
+                n_prompt = "How many MIRRORS are there?\n"
+                n = int(input(n_prompt))
 
-            # Check input is valid
-            if n > 0:
-                # Generate n number of Mirror objects
-                for i in range(n):
-                    mirror = prompt_mirror(i)
-                    mirrors.append(mirror) 
-                break    
-            else:
+                # Check input is valid
+                if n > 0:
+                    # Generate n number of Mirror objects
+                    for i in range(n):
+                        mirror = prompt_mirror(i)
+                        mirrors.append(mirror) 
+                    break    
+                else:
+                    print("Invalid input.")
+                    continue
+            except:
                 print("Invalid input.")
                 continue
-        except:
-            print("Invalid input.")
-            continue
-    
-    # Return Mirror objects list
-    return mirrors
+        
+        # Return Mirror objects list
+        return mirrors
+    else:
+        return None
 
 
 def get_filename(short_name):
