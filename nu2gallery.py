@@ -79,7 +79,6 @@ def prompt_category():
             return categories[category]
         else:
             print("Invalid input.")
-            continue
 
 
 def prompt_short_name():
@@ -95,7 +94,6 @@ def prompt_short_name():
             return short_name
         else:
             print("Invalid input.")
-            continue
 
 
 def prompt_title(short_name):
@@ -112,7 +110,6 @@ def prompt_title(short_name):
             return title
         else:
             print("Invalid input.")
-            continue
 
 
 def prompt_alt(short_name):
@@ -129,7 +126,6 @@ def prompt_alt(short_name):
             return alt_text
         else:
             print("Invalid input.")
-            continue
 
 
 def prompt_preview(short_name):
@@ -146,7 +142,6 @@ def prompt_preview(short_name):
             return preview
         else:
             print("Invalid input.")
-            continue
 
 
 def prompt_external_link(i):
@@ -167,7 +162,6 @@ def prompt_external_link(i):
             break
         else:
             print("Invalid input.")
-            continue
 
     # Keep prompting user for valid URL
     while True:
@@ -180,7 +174,6 @@ def prompt_external_link(i):
             break
         else:
             print("Invalid input.")
-            continue
 
     # Keep prompting user for valid Yes or No input
     while True:
@@ -200,13 +193,11 @@ def prompt_external_link(i):
                     break
                 else:
                     print("Invalid input.")
-                    continue
             break
         elif has_embed == "N":
             return external_link
         else:
             print("Invalid input.")
-            continue
 
     return external_link
 
@@ -241,17 +232,14 @@ def prompt_external_links(short_name):
                         break    
                     else:
                         print("Invalid input.")
-                        continue
                 except:
                     print("Invalid input.")
-                    continue
             break
         elif has_external_links == "N":
             print(f"Let's continue with other values for the front matter of '{short_name}'.")
             break
         else:
             print("Invalid input.")
-            continue
     
     # Return ExternalLink objects list
     return external_links
@@ -276,7 +264,6 @@ def prompt_video(i):
             break
         else:
             print("Invalid input.")
-            continue
 
     # Keep prompting user for valid URL
     while True:
@@ -289,7 +276,6 @@ def prompt_video(i):
             break
         else:
             print("Invalid input.")
-            continue
 
     return video
 
@@ -322,17 +308,14 @@ def prompt_videos(short_name):
                         break
                     else:
                         print("Invalid input.")
-                        continue
                 except:
                     print("Invalid input.")
-                    continue
             break
         elif has_videos == "N":
             print(f"Let's continue with other values for the front matter of '{short_name}'.")
             break
         else:
             print("Invalid input.")
-            continue
     
     # Return Video objects list
     return videos
@@ -362,13 +345,11 @@ def prompt_thumbnail(short_name):
                     break
                 else:
                     print("Invalid input.")
-                    continue
             break
         elif is_animated == "N":
             break
         else:
             print("Invalid input.")
-            continue
 
     # Keep prompting user for valid PNG link
     while True:
@@ -381,7 +362,6 @@ def prompt_thumbnail(short_name):
             break
         else:
             print("Invalid input.")
-            continue
 
     # Keep prompting user for valid JPG link
     while True:
@@ -394,7 +374,6 @@ def prompt_thumbnail(short_name):
             break
         else:
             print("Invalid input.")
-            continue
 
     return thumbnail
 
@@ -417,7 +396,6 @@ def prompt_image(i):
             break
         else:
             print("Invalid input.")
-            continue
 
     # Keep prompting user for valid caption
     while True:
@@ -430,7 +408,6 @@ def prompt_image(i):
             break
         else:
             print("Invalid input.")
-            continue
 
     # Keep prompting user for valid FULL resolution link
     while True:
@@ -443,7 +420,6 @@ def prompt_image(i):
             break
         else:
             print("Invalid input.")
-            continue
 
     # Keep prompting user for valid Yes or No input
     while True:
@@ -461,13 +437,11 @@ def prompt_image(i):
                     break
                 else:
                     print("Invalid input.")
-                    continue
             break
         elif is_animated == "N":
             break
         else:
             print("Invalid input.")
-            continue
 
     # Keep prompting user for valid PNG link
     while True:
@@ -480,7 +454,6 @@ def prompt_image(i):
             break
         else:
             print("Invalid input.")
-            continue
 
     # Keep prompting user for valid JPG link
     while True:
@@ -493,7 +466,6 @@ def prompt_image(i):
             break
         else:
             print("Invalid input.")
-            continue
 
     return image
 
@@ -520,10 +492,8 @@ def prompt_images(short_name):
                 break
             else:
                 print("Invalid input.")
-                continue
         except:
             print("Invalid input.")
-            continue
 
     # Return Image objects list
     return images
@@ -550,7 +520,6 @@ def prompt_palette(category):
                         return palette
                     else:
                         print("Invalid input.")
-                        continue
             elif has_palette == "N":
                 return None
             else:
@@ -577,7 +546,6 @@ def prompt_mirror(i):
             break
         else:
             print("Invalid input.")
-            continue
 
     # Keep prompting user for valid URL
     while True:
@@ -590,7 +558,6 @@ def prompt_mirror(i):
             break
         else:
             print("Invalid input.")
-            continue
 
     return mirror
 
@@ -620,10 +587,8 @@ def prompt_mirrors(palette):
                     break    
                 else:
                     print("Invalid input.")
-                    continue
             except:
                 print("Invalid input.")
-                continue
         
         # Return Mirror objects list
         return mirrors
@@ -687,7 +652,6 @@ def write_file(data, filename):
             exit()
         else:
             print("Invalid input.")
-            continue
 
 
 if __name__ == "__main__":
