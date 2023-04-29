@@ -90,7 +90,7 @@ class Image(ImageFile):
         data = indentations["default"] + indentations["start"] + "label: " + self.get_label() + indentations["newline"]
 
         # Caption line
-        data += indentations["default"] + indentations["specific"] + "caption: " + self.get_label() + indentations["newline"]
+        data += indentations["default"] + indentations["specific"] + "caption: " + self.get_caption() + indentations["newline"]
 
         # Full link line
         data += indentations["default"] + indentations["specific"] + "full: " + self.get_link_full() + indentations["newline"]
