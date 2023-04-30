@@ -671,7 +671,7 @@ def write_file(data, filename):
             print(f"'{filename}' was succesfully created inside /images directory.")
             print("Thank you for using Nu2Gallery.")
             exit()
-        elif write_file == "N":
+        elif confirm == "N":
             print("Thank you for using Nu2Gallery.")
             exit()
         else:
