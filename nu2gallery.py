@@ -14,48 +14,72 @@ def main():
     category = prompt_category()
     front_matter.set_category(category)
 
+    print()
+
     # Prompt user for new image's palette
     palette = prompt_palette(category)
     front_matter.set_palette(palette)
+
+    print()
 
     # Prompt user for palette's mirrors
     mirrors = prompt_mirrors(palette)
     front_matter.set_mirrors(mirrors)
 
+    print()
+
     # Prompt user for new image's short name
     short_name = prompt_short_name()
     front_matter.set_short_name(short_name)
+
+    print()
 
     # Prompt user for new image's title
     title = prompt_title(short_name)
     front_matter.set_title(title)
 
+    print()
+
     # Prompt user for new image's alt text
     alt_text = prompt_alt(short_name)
     front_matter.set_alt(alt_text)
+
+    print()
 
     # Prompt user for new image's preview image
     preview = prompt_preview(short_name)
     front_matter.set_preview(preview)
 
+    print()
+
     # Prompt user for external links
     external_links = prompt_external_links(short_name)
     front_matter.set_external_links(external_links)
+
+    print()
 
     # Prompt user for videos
     videos = prompt_videos(short_name)
     front_matter.set_videos(videos)
 
+    print()
+
     # Prompt user for thumbnail
     thumbnail = prompt_thumbnail(short_name)
     front_matter.set_thumbnail(thumbnail)
+
+    print()
 
     # Prompt user for images
     images = prompt_images(short_name)
     front_matter.set_images(images)
 
+    print()
+
     # Define new image's filename 
     filename = get_filename(short_name)
+
+    print()
 
     # Write file and exit
     write_file(front_matter.get_data(), filename)
