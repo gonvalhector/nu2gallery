@@ -20,13 +20,9 @@ That program became outdated and hard to update when newer features were impleme
 
 Python 3.4+
 
-## Installation
-
-
-
 ## Usage
 
-
+At the command prompt, type `python3 nu2gallery.py` and follow the prompts.
 
 ## Detailed Descriptions
 
