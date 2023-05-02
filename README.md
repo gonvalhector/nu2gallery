@@ -1,5 +1,10 @@
 # nu2gallery
 
+![GitHub](https://img.shields.io/github/license/gonvalhector/nu2gallery)
+![GitHub contributors](https://img.shields.io/github/contributors/gonvalhector/nu2gallery?logoColor=orange)
+![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/gonvalhector/nu2gallery)
+![GitHub issues](https://img.shields.io/github/issues-raw/gonvalhector/nu2gallery)
+
 ## Introduction
 
 **nu2gallery** is a Python tool that writes a new *Markdown* file with metadata necessary to display an image post for [gonvalhector.github.io](https://github.com/gonvalhector/gonvalhector.github.io).  
