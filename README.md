@@ -15,7 +15,6 @@ That program became outdated and hard to update when newer features were impleme
 ## Table of Contents
 
 - [Technologies/Requirements](#technologies--requirements)
-- [Installation](#installation)
 - [Usage](#usage)
 - [Detailed Descriptions](#detailed-descriptions)
 - [Credits](#credits)
