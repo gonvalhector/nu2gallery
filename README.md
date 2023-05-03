@@ -28,13 +28,12 @@ Python 3.4+
 
 At the command prompt, type `python3 nu2gallery.py` and follow the prompts.
 
-## Detailed Descriptions
-
-
-
 ## Credits
 
 
 
 ## How to Contribute
 
+
+
+## Detailed Description
