@@ -30,6 +30,13 @@ At the command prompt, type `python3 nu2gallery.py` and follow the prompts.
 
 ## Credits
 
+### Owner / Mantainer
+
+[Hector Gonzalez](https://github.com/gonvalhector)
+
+### Contributors
+
+[zubayer hossain](https://github.com/zubu007)
 
 
 ## How to Contribute
