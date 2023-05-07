@@ -16,9 +16,7 @@ That program became outdated and hard to update when newer features were impleme
 
 - [Technologies/Requirements](#technologies--requirements)
 - [Usage](#usage)
-- [Detailed Descriptions](#detailed-descriptions)
 - [Credits](#credits)
-- [How to Contribute](#how-to-contribute)
 
 ## Technologies / Requirements
 
@@ -37,10 +35,3 @@ At the command prompt, type `python3 nu2gallery.py` and follow the prompts.
 ### Contributors
 
 [zubayer hossain](https://github.com/zubu007)
-
-
-## How to Contribute
-
-
-
-## Detailed Description
