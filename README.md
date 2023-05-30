@@ -5,6 +5,8 @@
 ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/gonvalhector/nu2gallery)
 ![GitHub issues](https://img.shields.io/github/issues-raw/gonvalhector/nu2gallery)
 
+![nu2gallery's logo](https://lh3.googleusercontent.com/pw/AJFCJaXNpON4f5ERH4Mmb3Maxw1D9Fz5Zti3ogODMlkygwP2Y_zNim2cd-xN5zAV8ujhd9BrRpqNKttJF69Ay-ihtPl6lUTm3rQaBF20Uon_I7FD7vcCK-eMLecR0IFro9Vsfcv8jTqgkDNerGNGpHc2PdYk=w1200-h630-s-no?authuser=0 "nu2gallery's logo")
+
 ## Introduction
 
 **nu2gallery** is a Python tool that writes a new *Markdown* file with metadata necessary to display an image post for [gonvalhector.github.io](https://github.com/gonvalhector/gonvalhector.github.io).  
